@@ -1,20 +1,22 @@
 import React from "react";
 import ProfilePic from "./profilepic";
-import EditProfile from "./editprofile";
+import EditBio from "./editprofile";
+import EditSkills from "./editskills";
+import EditLocation from "./editlocation";
 import Uploader from "./uploader";
 
 export default function Profile(props) {
     return (
-        <div id="profilePic">
+        <div>
             <h3 id="userProfile">{`${props.first}`}'s profile</h3>
             <p>{`${props.first} ${props.last}`}</p>
             <p>{`${props.email}`}</p>
             <p>Registered as a {`${props.registeras}`}</p>
-            <EditProfile
-                bio={props.bio}
+            <EditBio bio={props.bio} done={props.changeBio} />
+            <EditSkills skills={props.skills} done={props.changeSkills} />
+            <EditLocation
                 location={props.location}
-                skills={props.skills}
-                done={props.changeDescription}
+                done={props.changeLocation}
             />
         </div>
     );

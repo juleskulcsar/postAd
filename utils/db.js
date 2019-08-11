@@ -38,16 +38,21 @@ exports.updateImage = function updateImage(url, id) {
     ]);
 };
 
-exports.updateProfile = function updateProfile(bio, location, skills, id) {
+exports.updateBio = function updateBio(bio, id) {
+    return db.query(`UPDATE users SET bio = $1 WHERE id = $2 RETURNING bio`, [
+        bio,
+        id
+    ]);
+};
+exports.updateSkills = function updatSkills(skills, id) {
     return db.query(
-        `UPDATE users SET bio = $1, location = $2, skills =$3 WHERE id = $4 RETURNING *`,
-        [bio, location, skills, id]
+        `UPDATE users SET skills = $1 WHERE id = $2 RETURNING skills`,
+        [skills, id]
     );
 };
-
-// exports.updateLocation = function updateBio(location, id) {
-//     return db.query(
-//         `UPDATE users SET location = $1 WHERE id = $2 RETURNING location`,
-//         [location, id]
-//     );
-// };
+exports.updateLocation = function updatSkills(location, id) {
+    return db.query(
+        `UPDATE users SET location = $1 WHERE id = $2 RETURNING location`,
+        [location, id]
+    );
+};

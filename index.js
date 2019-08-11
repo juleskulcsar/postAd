@@ -131,19 +131,28 @@ app.get("/profile", async (req, res) => {
     }
 });
 
-app.post("/description", async (req, res) => {
+app.post("/bio", async (req, res) => {
     try {
-        console.log("req.body: ", req.body);
-        await db.updateProfile(
-            req.body.bio,
-            req.body.location,
-            req.body.skills,
-            req.session.userId
-        );
-
-        res.json(req.body);
+        await db.updateBio(req.body.bio, req.session.userId);
+        res.json(req.body.bio);
     } catch (err) {
-        console.log("err in post /description: ", err);
+        console.log("err in post /bio: ", err);
+    }
+});
+app.post("/skills", async (req, res) => {
+    try {
+        await db.updateSkills(req.body.skills, req.session.userId);
+        res.json(req.body.skills);
+    } catch (err) {
+        console.log("err in post /skills: ", err);
+    }
+});
+app.post("/location", async (req, res) => {
+    try {
+        await db.updateLocation(req.body.location, req.session.userId);
+        res.json(req.body.location);
+    } catch (err) {
+        console.log("err in post /location: ", err);
     }
 });
 

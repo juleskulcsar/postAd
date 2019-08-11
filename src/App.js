@@ -17,8 +17,6 @@ export default class App extends React.Component {
 
     async componentDidMount() {
         const { data } = await axios.get("/profile");
-        // console.log("this is data.user: ", data.id);
-        // console.log("this is id: ", this.state.id);
         console.log("this is data: ", data);
         this.setState(data);
     }
@@ -68,6 +66,18 @@ export default class App extends React.Component {
                                             bio: bio
                                         })
                                     }
+                                    skills={this.state.skills}
+                                    changeSkills={skills =>
+                                        this.setState({
+                                            skills: skills
+                                        })
+                                    }
+                                    location={this.state.location}
+                                    changeLocation={location =>
+                                        this.setState({
+                                            location: location
+                                        })
+                                    }
                                     url={this.state.url}
                                     first={this.state.first}
                                     last={this.state.last}
@@ -76,7 +86,9 @@ export default class App extends React.Component {
                                     onClick={() =>
                                         this.setState({
                                             uploaderIsVisible: true,
-                                            showBio: true
+                                            showBio: true,
+                                            showSkills: true,
+                                            showLocation: true
                                         })
                                     }
                                 />
