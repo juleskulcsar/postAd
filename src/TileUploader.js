@@ -16,14 +16,15 @@ export default class TileUploader extends React.Component {
     }
     submit() {
         axios
-            .post("/advertize", {
+            .post("/ads", {
                 title: this.state.title,
-                tileDescription: this.state.tileDescription,
+                description: this.state.description
             })
             .then(({ data }) => {
                 //same as resp.data and resp.data.success
                 if (data.success) {
-                    location.replace("/");
+                    // location.replace("/allads");
+                    return;
                 } else {
                     this.setState({
                         error: true
@@ -40,9 +41,9 @@ export default class TileUploader extends React.Component {
                     placeholder="name of your ad"
                 />
                 <textarea
-                    name="tileDescription"
+                    name="description"
                     onChange={e => this.handleChange(e)}
-                    placeholder="email"
+                    placeholder="description"
                 />
 
                 <button onClick={e => this.submit()}>post</button>

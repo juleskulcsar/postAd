@@ -7,117 +7,70 @@ if (process.env.DATABASE_URL) {
     db = spicedPg("postgres:postgres:postgres@localhost:5432/postad");
 }
 
-exports.addAdInfo = function addAdInfo(title, description) {
+exports.addUserInfo = function addUserInfo(
+    first,
+    last,
+    email,
+    password,
+    registeras
+) {
     return db.query(
-        `INSERT INTO ads(title, description) VALUES($1, $2, $3) RETURNING *`,
-        [title, description]
+        "INSERT INTO users(first, last, email, password, registeras) VALUES($1, $2, $3, $4, $5) RETURNING *",
+        [first, last, email, password, registeras]
     );
 };
-//
-// exports.getUser = function getUser(email) {
-//     return db.query(`SELECT * FROM users WHERE email=$1`, [email]);
-// };
-//
-exports.getAdById = function getAdById(ad_id) {
+
+exports.getUser = function getUser(email) {
+    return db.query(`SELECT * FROM users WHERE email=$1`, [email]);
+};
+
+exports.getUserById = function getUserById(id) {
     return db.query(
-        `SELECT ad_id, title, description, tech FROM users WHERE ad_id=$1`,
-        [ad_id]
+        `SELECT id, first, last, email, registeras, url, bio, location, skills FROM users WHERE id = $1`,
+        [id]
     );
 };
-//
-// exports.addImage = function addImage(image, id) {
-//     return db.query(`UPDATE users SET image = $1 WHERE id = $2 RETURNING *`, [
-//         image,
-//         id
-//     ]);
-// };
-//
-exports.addAd = function addAd(description, ad_id) {
-    return db.query(`UPDATE users SET bio = $1 WHERE id = $2 RETURNING description`, [
-        description,
-        ad_id
+
+exports.updateImage = function updateImage(url, id) {
+    return db.query(`UPDATE users SET url = $1 WHERE id = $2 RETURNING *`, [
+        url,
+        id
     ]);
 };
-//
-// exports.searchUsers = function searchUsers(val) {
-//     return db.query(
-//         `SELECT id, first, last, image FROM users WHERE first ILIKE $1;`,
-//         [val + "%"]
-//     );
-// };
-//
-// exports.getRecentUsers = function getRecentUsers() {
-//     return db.query(
-//         `SELECT id, first, last, image, bio FROM users ORDER BY created_at DESC LIMIT 3`
-//     );
-// };
-//
-// exports.getFriendships = function getFriendships(sender_id, receiver_id) {
-//     return db.query(
-//         `SELECT * FROM friendships
-//         WHERE (sender_id = $1 AND receiver_id = $2)
-//         OR (sender_id = $2 AND receiver_id = $1)`,
-//         [sender_id, receiver_id]
-//     );
-// };
-//
-// exports.addFriendship = function addFriendship(sender_id, receiver_id) {
-//     return db.query(
-//         `INSERT into friendships(sender_id, receiver_id)
-//         VALUES ($1, $2)
-//         RETURNING *`,
-//         [sender_id, receiver_id]
-//     );
-// };
-//
-// exports.acceptFriendship = function acceptFriendship(sender_id, receiver_id) {
-//     return db.query(
-//         `UPDATE friendships
-//         SET accepted = true
-//         WHERE sender_id = $2 AND receiver_id = $1
-//         RETURNING accepted
-//         `,
-//         [sender_id, receiver_id]
-//     );
-// };
-//
-// exports.cancelFriendship = function cancelFriendship(sender_id, receiver_id) {
-//     return db.query(
-//         `DELETE FROM friendships
-//         WHERE (sender_id = $1 AND receiver_id = $2)
-//         OR (sender_id = $2 AND receiver_id = $1)`,
-//         [sender_id, receiver_id]
-//     );
-// };
-//
-// exports.friendsWannabes = function friendsWannabes(id) {
-//     return db.query(
-//         `SELECT users.id, first, last, image, accepted
-//         FROM friendships
-//         JOIN users
-//         ON (accepted = false AND receiver_id = $1 AND sender_id = users.id)
-//         OR (accepted = true AND receiver_id = $1 AND sender_id = users.id)
-//         OR (accepted = true AND sender_id = $1 AND receiver_id = users.id)`,
-//         [id]
-//     );
-// };
-//
-// exports.saveMessage = function saveMessage(sender_id, message) {
-//     return db.query(
-//         `INSERT INTO chats (sender_id, message)
-//         VALUES ($1, $2)
-//         RETURNING *`,
-//         [sender_id, message]
-//     );
-// };
-//
-// exports.lastTenMessages = function lastTenMessages() {
-//     return db.query(
-//         `SELECT chats.id, users.id as user_id, first, last, image, message, chats.created_at
-//         FROM chats
-//         LEFT JOIN users
-//         ON users.id = chats.sender_id
-//         ORDER BY chats.created_at DESC
-//         LIMIT 10`
-//     );
-// };
+
+exports.updateBio = function updateBio(bio, id) {
+    return db.query(`UPDATE users SET bio = $1 WHERE id = $2 RETURNING bio`, [
+        bio,
+        id
+    ]);
+};
+exports.updateSkills = function updatSkills(skills, id) {
+    return db.query(
+        `UPDATE users SET skills = $1 WHERE id = $2 RETURNING skills`,
+        [skills, id]
+    );
+};
+exports.updateLocation = function updatSkills(location, id) {
+    return db.query(
+        `UPDATE users SET location = $1 WHERE id = $2 RETURNING location`,
+        [location, id]
+    );
+};
+
+//---------all ads stuff -------------------------------------
+exports.addAdInfo = function addAdInfo(user_id, title, description) {
+    return db.query(
+        `INSERT INTO ads(user_id, title, description) VALUES($1, $2, $3) RETURNING *`,
+        [user_id, title, description]
+    );
+};
+
+exports.getAllAds = function getAllAds() {
+    return db.query(
+        `SELECT users.id, first, last, location, title, description
+        FROM ads
+        JOIN users
+        ON (user_id = users.id)`
+    );
+};
+//---------all ads stuff -------------------------------------
