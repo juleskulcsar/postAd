@@ -14,23 +14,25 @@ export default function AllAds() {
     }, []);
 
     return (
-        <div className="ads-list">
-            <div className="ads">
-                <h1>create ad</h1>
-                <TileUploader />
-                <h2>all ads</h2>
-                {list &&
-                    list.map(ad => (
-                        <div key={ad.ad_id}>
-                            <Link to={`/user/${ad.id}`}>
-                                <p>
-                                    posted by {ad.first} {ad.last}
-                                </p>
-                            </Link>
-                            <p>{ad.title}</p>
-                            <p>{ad.description}</p>
-                        </div>
-                    ))}
+        <div>
+            <h3>create ad</h3>
+            <TileUploader />
+            <div>
+                <h3>all ads</h3>
+                <div className="ads-list">
+                    {list &&
+                        list.map(ad => (
+                            <div className="ads" key={ad.ad_id}>
+                                <Link to={`/user/${ad.id}`}>
+                                    <p>
+                                        posted by {ad.first} {ad.last}
+                                    </p>
+                                </Link>
+                                <p>{ad.title}</p>
+                                <p>{ad.description}</p>
+                            </div>
+                        ))}
+                </div>
             </div>
         </div>
     );

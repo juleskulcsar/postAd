@@ -8,8 +8,8 @@ export default class EditSkills extends React.Component {
             editing: false,
             showCancel: false,
             showEdit: true,
-            editSkills: "Edit your skills!",
-            addSkills: "Add your skills!"
+            editSkills: "edit skills",
+            addSkills: "add skills"
         };
     }
 
@@ -26,8 +26,8 @@ export default class EditSkills extends React.Component {
                     editing: false,
                     showCancel: false,
                     showEdit: true,
-                    addSkills: "Add your skills!",
-                    editSkills: "Edit your skills!"
+                    addSkills: "add skills",
+                    editSkills: "edit skills"
                 });
                 this.props.done(data);
             })
@@ -75,7 +75,7 @@ export default class EditSkills extends React.Component {
                                         editing: true,
                                         showCancel: true,
                                         showEdit: true,
-                                        editSkills: "Editing your skills!"
+                                        editSkills: ""
                                     })
                                 }
                             >
@@ -90,7 +90,7 @@ export default class EditSkills extends React.Component {
                                     this.setState({
                                         editing: false,
                                         showCancel: false,
-                                        editSkills: "Edit your skills!"
+                                        editSkills: "edit skills"
                                     })
                                 }
                             >
@@ -108,7 +108,7 @@ export default class EditSkills extends React.Component {
                                 this.setState({
                                     editing: true,
                                     showCancel: true,
-                                    addSkills: "Adding skills!"
+                                    addSkills: ""
                                 })
                             }
                         >
@@ -121,11 +121,11 @@ export default class EditSkills extends React.Component {
                                     this.setState({
                                         editing: false,
                                         showCancel: false,
-                                        addSkills: "Add your skills!"
+                                        addSkills: "add skills"
                                     })
                                 }
                             >
-                                Cancel
+                                cancel
                             </button>
                         ) : null}
                     </div>

@@ -8,10 +8,16 @@ import TileUploader from "./TileUploader";
 
 export default function Profile(props) {
     return (
-        <div>
-            <h3 id="userProfile">{`${props.first}`}'s profile</h3>
+        <div id="profile">
+        <ProfilePic
+                size="jumbo"
+                url={props.url}
+                first={props.first}
+                last={props.last}
+                onClick={props.onClick}
+            />
+            <h3 className="profile-name">{`${props.first}`}'s profile</h3>
             <p>{`${props.first} ${props.last}`}</p>
-            <p>{`${props.email}`}</p>
             <p>Registered as a {`${props.registeras}`}</p>
             <EditBio bio={props.bio} done={props.changeBio} />
             <EditSkills skills={props.skills} done={props.changeSkills} />

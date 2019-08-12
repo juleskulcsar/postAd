@@ -31,10 +31,10 @@ export default class App extends React.Component {
         return (
             <BrowserRouter className="App">
                 <div>
-                    <header>
+                    <header className="header">
                         <a href="/"><img
                             id="logo"
-                            src="/logo.png"
+                            src="/PostAd_logotype_white.png"
                             alt="logo"
                             height={50}
                         /></a>
