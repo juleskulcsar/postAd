@@ -32,34 +32,27 @@ export default class App extends React.Component {
             <BrowserRouter className="App">
                 <div>
                     <header>
-                        <img
+                        <a href="/"><img
                             id="logo"
                             src="/logo.png"
-                            alt="super"
+                            alt="logo"
                             height={50}
-                        />
-                        <ul>
-                            <li>
-                                <a href="/logout">logout</a>
-                            </li>
-                            <li>
+                        /></a>
+                        <nav className="navigation">
                                 <Link to="/">{this.state.first}'s profile</Link>
-                            </li>
-                            <li>
                                 <Link to="/allads">ads</Link>
-                            </li>
-                        </ul>
+                                <a href="/logout">logout</a>
+                                <ProfilePic
+                                    url={this.state.url}
+                                    first={this.state.first}
+                                    last={this.state.last}
+                                    onClick={() =>
+                                        this.setState({ uploaderIsVisible: true })
+                                    }
+                                />
+                        </nav>
                     </header>
-                    <div>
-                        <ProfilePic
-                            url={this.state.url}
-                            first={this.state.first}
-                            last={this.state.last}
-                            onClick={() =>
-                                this.setState({ uploaderIsVisible: true })
-                            }
-                        />
-                    </div>
+
                     <Route exact path="/allads" component={AllAds} />
                     <Route
                         exact

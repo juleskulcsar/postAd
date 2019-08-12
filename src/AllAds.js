@@ -7,7 +7,7 @@ import TileUploader from "./TileUploader";
 export default function AllAds() {
     const dispatch = useDispatch();
     const list = useSelector(state => state.ads);
-    console.log("LIST in ALLADS", list);
+    // console.log("LIST in ALLADS", list);
 
     useEffect(() => {
         dispatch(receiveAllAds());
@@ -21,7 +21,7 @@ export default function AllAds() {
                 <h2>all ads</h2>
                 {list &&
                     list.map(ad => (
-                        <div key={ad.id}>
+                        <div key={ad.ad_id}>
                             <Link to={`/user/${ad.id}`}>
                                 <p>
                                     posted by {ad.first} {ad.last}

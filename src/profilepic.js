@@ -1,7 +1,7 @@
 import React from "react";
 
 export default function({ url, first, last, onClick, size }) {
-    url = url || "/default.png";
+    url = url || "/default.jpg";
     return (
         <div id="picture">
             <img

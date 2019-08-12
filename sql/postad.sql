@@ -20,5 +20,5 @@ CREATE TABLE ads (
     ad_id SERIAL primary key,
     user_id INT NOT NULL REFERENCES users(id),
     title text,
-    description VARCHAR(255)
+    description VARCHAR(1000)
 );

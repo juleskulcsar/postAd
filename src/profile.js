@@ -19,7 +19,6 @@ export default function Profile(props) {
                 location={props.location}
                 done={props.changeLocation}
             />
-            <TileUploader/>
         </div>
     );
 }

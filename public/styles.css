@@ -1,0 +1,36 @@
+* {
+    box-sizing: border-box;
+    font-family: Raleway, sans-serif;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 40px;
+}
+
+.navigation {
+    display: flex;
+    align-items: flex-start;
+}
+
+.navigation a {
+    color: #3f3f3f;
+    font-family: Raleway, sans-serif;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 30px;
+}
+
+.profileImage {
+    object-fit: cover;
+    width: 80px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
+    padding: 10px;
+}

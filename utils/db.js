@@ -67,7 +67,7 @@ exports.addAdInfo = function addAdInfo(user_id, title, description) {
 
 exports.getAllAds = function getAllAds() {
     return db.query(
-        `SELECT users.id, first, last, location, title, description
+        `SELECT ad_id, users.id, first, last, location, title, description
         FROM ads
         JOIN users
         ON (user_id = users.id)`
