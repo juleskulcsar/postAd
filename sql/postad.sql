@@ -23,6 +23,7 @@ CREATE TABLE posts (
     title VARCHAR(255),
     description text,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
 
 DROP TABLE IF EXISTS ads;
 

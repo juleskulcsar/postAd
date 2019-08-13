@@ -239,12 +239,6 @@ app.get("/user/:id.json", async (req, res) => {
     }
 });
 
-//logout
-app.get("/logout", (req, res) => {
-    req.session = null;
-    res.redirect("/welcome");
-});
-
 //---------ads wall post stuff----------
 //------ insert ads into database
 app.post("/ads", async (req, res) => {
@@ -256,13 +250,13 @@ app.post("/ads", async (req, res) => {
         console.log("result in POST ADS: ", result.rows);
         console.log("Id in POST/ads:", id);
         res.json({
-                    ad_id: id.rows[0].ad_id,
-                    user_id: id.rows[0].user_id,
-                    title: id.rows[0].title,
-                    description: id.rows[0].description,
-                    first: result.rows[0].first,
-                    last: result.rows[0].last
-                });
+            ad_id: id.rows[0].ad_id,
+            user_id: id.rows[0].user_id,
+            title: id.rows[0].title,
+            description: id.rows[0].description,
+            first: result.rows[0].first,
+            last: result.rows[0].last
+        });
     } catch (err) {
         console.log("err in POST /ads", err);
     }
@@ -276,6 +270,12 @@ app.get("/allads.json", async (req, res) => {
     } catch (err) {
         console.log("err in GET /allads.json: ", err);
     }
+});
+
+//logout
+app.get("/logout", (req, res) => {
+    req.session = null;
+    res.redirect("/welcome");
 });
 
 //keep this last
