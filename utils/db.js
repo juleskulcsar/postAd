@@ -44,15 +44,48 @@ exports.updateBio = function updateBio(bio, id) {
         id
     ]);
 };
-exports.updateSkills = function updatSkills(skills, id) {
+exports.updateSkills = function updateSkills(skills, id) {
     return db.query(
         `UPDATE users SET skills = $1 WHERE id = $2 RETURNING skills`,
         [skills, id]
     );
 };
-exports.updateLocation = function updatSkills(location, id) {
+exports.updateLocation = function updateLocation(location, id) {
     return db.query(
         `UPDATE users SET location = $1 WHERE id = $2 RETURNING location`,
         [location, id]
+    );
+};
+exports.addPost = function addPost(user_id, title, description) {
+    return db.query(
+        `INSERT INTO posts(user_id, title, description) VALUES($1, $2, $3) RETURNING *`,
+        [user_id, title, description]
+    );
+};
+// exports.addPost = function addPost(user_id, post_url, title, description) {
+//     return db.query(
+//         `INSERT INTO posts(user_id, post_url, title, description) VALUES($1, $2, $3, $4) RETURNING *`,
+//         [user_id, post_url, title, description]
+//     );
+// };
+// exports.updatePostImage = function updatePostImage(post_url, post_id) {
+//     return db.query(
+//         `UPDATE posts SET post_url = $1 WHERE post_id = $2 RETURNING *`,
+//         [post_url, post_id]
+//     );
+// };
+exports.updatePostImage = function updatePostImage(post_url, user_id) {
+    return db.query(
+        `INSERT INTO posts(post_url, user_id) VALUES($1, $2) RETURNING *`,
+        [post_url, user_id]
+    );
+};
+
+exports.getAllPosts = function getAllPosts() {
+    return db.query(
+        `SELECT users.id, first, last, post_url, title, description
+        FROM posts
+        JOIN users
+        ON (user_id = users.id)`
     );
 };

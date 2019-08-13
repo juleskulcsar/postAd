@@ -1,14 +1,17 @@
 import React from "react";
-import ProfilePic from "./profilepic";
+// import ProfilePic from "./profilepic";
 import EditBio from "./editprofile";
 import EditSkills from "./editskills";
 import EditLocation from "./editlocation";
-import Uploader from "./uploader";
+// import Uploader from "./uploader";
+// import PostUploader from "./addpost";
+import Portfolio from "./portfolio";
+// console.log("this is portfolio: ", Portfolio);
 
 export default function Profile(props) {
     return (
         <div>
-            <h3 id="userProfile">{`${props.first}`}'s profile</h3>
+            <h3 id="userProfile">{`${props.first}`}s profile</h3>
             <p>{`${props.first} ${props.last}`}</p>
             <p>{`${props.email}`}</p>
             <p>Registered as a {`${props.registeras}`}</p>
@@ -18,6 +21,7 @@ export default function Profile(props) {
                 location={props.location}
                 done={props.changeLocation}
             />
+            <Portfolio />
         </div>
     );
 }
@@ -30,3 +34,10 @@ export default function Profile(props) {
 //         onClick={props.onClick}
 //     />
 // </div>
+
+// <PostUploader
+//     url={props.url}
+//     title={props.title}
+//     description={props.description}
+//     done={props.handleChange}
+// />

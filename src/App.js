@@ -5,12 +5,16 @@ import Profile from "./profile";
 import ProfilePic from "./profilepic";
 import Uploader from "./uploader";
 import EditProfile from "./editprofile";
+import PostUploader from "./addpost";
+import PostUploadButton from "./uploadpostbutton";
+import Portfolio from "./portfolio";
 
 export default class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             uploaderIsVisible: false,
+            postUploaderIsVisible: false,
             showBio: false
         };
     }
@@ -54,6 +58,13 @@ export default class App extends React.Component {
                             }
                         />
                     </div>
+                    <div>
+                        <PostUploadButton
+                            onClick={() =>
+                                this.setState({ postUploaderIsVisible: true })
+                            }
+                        />
+                    </div>
                     <Route
                         exact
                         path="/"
@@ -86,6 +97,7 @@ export default class App extends React.Component {
                                     onClick={() =>
                                         this.setState({
                                             uploaderIsVisible: true,
+                                            postUploaderIsVisible: true,
                                             showBio: true,
                                             showSkills: true,
                                             showLocation: true
@@ -95,6 +107,22 @@ export default class App extends React.Component {
                             );
                         }}
                     />
+                    <Route
+                        exact
+                        path="/post"
+                        render={() => {
+                            return (
+                                <PostUploadButton
+                                    onClick={() =>
+                                        this.setState({
+                                            postUploaderIsVisible: true
+                                        })
+                                    }
+                                />
+                            );
+                        }}
+                    />
+                    <Route path="/allposts.json" component={Portfolio} />
                     {this.state.uploaderIsVisible && (
                         <Uploader
                             onClick
@@ -107,6 +135,23 @@ export default class App extends React.Component {
                             handleClick={() =>
                                 this.setState({
                                     uploaderIsVisible: false
+                                })
+                            }
+                        />
+                    )}
+
+                    {this.state.postUploaderIsVisible && (
+                        <PostUploader
+                            onClick
+                            done={image => {
+                                this.setState({
+                                    post_url: image,
+                                    postUploaderIsVisible: false
+                                });
+                            }}
+                            handleClick={() =>
+                                this.setState({
+                                    postUploaderIsVisible: false
                                 })
                             }
                         />
