@@ -121,8 +121,9 @@ app.post("/login", (req, res) => {
 app.get("/profile", async (req, res) => {
     try {
         let user = await db.getUserById(req.session.userId);
+        console.log("user in /profile:", user);
         if (user.rows[0].url === null) {
-            user.rows[0].url = "/default.png";
+            user.rows[0].url = "/default.jpg";
         }
         console.log("what is this? ", user.rows[0]);
         res.json(user.rows[0]);
@@ -242,6 +243,39 @@ app.get("/user/:id.json", async (req, res) => {
 app.get("/logout", (req, res) => {
     req.session = null;
     res.redirect("/welcome");
+});
+
+//---------ads wall post stuff----------
+//------ insert ads into database
+app.post("/ads", async (req, res) => {
+    const { title, description } = req.body;
+    console.log("REQ BODY in post ads:", req.body);
+    try {
+        let id = await db.addAdInfo(req.session.userId, title, description);
+        let result = await db.getUserById(req.session.userId);
+        console.log("result in POST ADS: ", result.rows);
+        console.log("Id in POST/ads:", id);
+        res.json({
+                    ad_id: id.rows[0].ad_id,
+                    user_id: id.rows[0].user_id,
+                    title: id.rows[0].title,
+                    description: id.rows[0].description,
+                    first: result.rows[0].first,
+                    last: result.rows[0].last
+                });
+    } catch (err) {
+        console.log("err in POST /ads", err);
+    }
+});
+
+app.get("/allads.json", async (req, res) => {
+    try {
+        const { rows } = await db.getAllAds();
+        console.log("wtf is this rows in /allads.json: ", rows);
+        res.json(rows);
+    } catch (err) {
+        console.log("err in GET /allads.json: ", err);
+    }
 });
 
 //keep this last

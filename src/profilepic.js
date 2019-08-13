@@ -1,14 +1,15 @@
 import React from "react";
 
 export default function({ url, first, last, onClick, size }) {
-    url = url || "/default.png";
+    url = url || "/default.jpg";
     return (
-        <div id="picture">
+        <div id="profileImageContainer">
             <img
+                className="profileImage"
                 src={url}
                 alt={`${first} ${last}`}
                 onClick={onClick}
-                height={size == "jumbo" ? 200 : 200}
+                height={size == "jumbo" ? 200 : 80}
             />
         </div>
     );

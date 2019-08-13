@@ -7,23 +7,20 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
 import reduxPromise from "redux-promise";
-import reducer from "./reducers";
+import reducers from "./reducers";
 // import { init } from "./socket";
 
 const store = createStore(
-    reducer,
+    reducers,
     composeWithDevTools(applyMiddleware(reduxPromise))
 );
 
 let elem;
 
 if (location.pathname == "/welcome") {
-    //they are logged out
     elem = <Welcome />;
 } else {
     // init(store);
-    //they are logged in
-    // elem = <img src="/logo.png" height={150} />;
     elem = (
         <Provider store={store}>
             <App />

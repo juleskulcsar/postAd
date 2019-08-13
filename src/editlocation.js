@@ -7,8 +7,8 @@ export default class EditLocation extends React.Component {
             editing: false,
             showCancel: false,
             showEdit: true,
-            editLocation: "Edit your location!",
-            addLocation: "Add your location!"
+            editLocation: "edit location",
+            addLocation: "add location"
         };
     }
 
@@ -26,8 +26,8 @@ export default class EditLocation extends React.Component {
                     editing: false,
                     showCancel: false,
                     showEdit: true,
-                    addLocation: "Add your location!",
-                    editLocation: "Edit your location!"
+                    addLocation: "add location",
+                    editLocation: "edit location"
                 });
                 this.props.done(data);
             })
@@ -75,7 +75,7 @@ export default class EditLocation extends React.Component {
                                         editing: true,
                                         showCancel: true,
                                         showEdit: true,
-                                        editLocation: "Editing your location!"
+                                        editLocation: ""
                                     })
                                 }
                             >
@@ -90,7 +90,7 @@ export default class EditLocation extends React.Component {
                                     this.setState({
                                         editing: false,
                                         showCancel: false,
-                                        editLocation: "Edit your location!"
+                                        editLocation: "edit location"
                                     })
                                 }
                             >
@@ -108,7 +108,7 @@ export default class EditLocation extends React.Component {
                                 this.setState({
                                     editing: true,
                                     showCancel: true,
-                                    addLocation: "Adding location!"
+                                    addLocation: ""
                                 })
                             }
                         >
@@ -121,11 +121,11 @@ export default class EditLocation extends React.Component {
                                     this.setState({
                                         editing: false,
                                         showCancel: false,
-                                        addLocation: "Add your location!"
+                                        addLocation: "add location"
                                     })
                                 }
                             >
-                                Cancel
+                                cancel
                             </button>
                         ) : null}
                     </div>

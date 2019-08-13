@@ -8,8 +8,8 @@ export default class EditBio extends React.Component {
             editing: false,
             showCancel: false,
             showEdit: true,
-            editBio: "Edit your bio!",
-            addBio: "Add your bio!"
+            editBio: "edit bio",
+            addBio: "add bio"
         };
     }
 
@@ -26,8 +26,8 @@ export default class EditBio extends React.Component {
                     editing: false,
                     showCancel: false,
                     showEdit: true,
-                    addBio: "Add your bio!",
-                    editBio: "Edit your bio!"
+                    addBio: "add bio",
+                    editBio: "edit bio"
                 });
                 this.props.done(data);
             })
@@ -40,12 +40,11 @@ export default class EditBio extends React.Component {
         const { editBio } = this.state;
         const { addBio } = this.state;
         return (
-            <div className="textarea">
+            <div className="bio-editor">
                 {this.state.editing && (
-                    <div className="textareaContainer">
+                    <div>
                         <textarea
                             defaultValue={this.props.bio}
-                            className="textarea"
                             cols="40"
                             rows="10"
                             name="draftBio"
@@ -55,7 +54,6 @@ export default class EditBio extends React.Component {
                         />
                         <div>
                             <button
-                                className="bio"
                                 onClick={() => this.submit()}
                             >
                                 save
@@ -75,7 +73,7 @@ export default class EditBio extends React.Component {
                                         editing: true,
                                         showCancel: true,
                                         showEdit: true,
-                                        editBio: "Editing your bio!"
+                                        editBio: ""
                                     })
                                 }
                             >
@@ -90,7 +88,7 @@ export default class EditBio extends React.Component {
                                     this.setState({
                                         editing: false,
                                         showCancel: false,
-                                        editBio: "Edit your bio!"
+                                        editBio: "edit bio"
                                     })
                                 }
                             >
@@ -108,7 +106,7 @@ export default class EditBio extends React.Component {
                                 this.setState({
                                     editing: true,
                                     showCancel: true,
-                                    addBio: "Adding bio!"
+                                    addBio: ""
                                 })
                             }
                         >
@@ -121,11 +119,11 @@ export default class EditBio extends React.Component {
                                     this.setState({
                                         editing: false,
                                         showCancel: false,
-                                        addBio: "Add your bio!"
+                                        addBio: "add bio"
                                     })
                                 }
                             >
-                                Cancel
+                                cancel
                             </button>
                         ) : null}
                     </div>

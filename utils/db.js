@@ -56,6 +56,7 @@ exports.updateLocation = function updateLocation(location, id) {
         [location, id]
     );
 };
+
 exports.addPost = function addPost(user_id, title, description) {
     return db.query(
         `INSERT INTO posts(user_id, title, description) VALUES($1, $2, $3) RETURNING *`,
@@ -89,3 +90,21 @@ exports.getAllPosts = function getAllPosts() {
         ON (user_id = users.id)`
     );
 };
+
+//---------all ads stuff -------------------------------------
+exports.addAdInfo = function addAdInfo(user_id, title, description) {
+    return db.query(
+        `INSERT INTO ads(user_id, title, description) VALUES($1, $2, $3) RETURNING *`,
+        [user_id, title, description]
+    );
+};
+
+exports.getAllAds = function getAllAds() {
+    return db.query(
+        `SELECT ad_id, users.id, first, last, location, title, description
+        FROM ads
+        JOIN users
+        ON (user_id = users.id)`
+    );
+};
+//---------all ads stuff -------------------------------------

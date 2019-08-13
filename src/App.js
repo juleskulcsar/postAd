@@ -8,6 +8,9 @@ import EditProfile from "./editprofile";
 import PostUploader from "./addpost";
 import PostUploadButton from "./uploadpostbutton";
 import Portfolio from "./portfolio";
+import TileUploader from "./TileUploader";
+import Tile from "./Tile";
+import AllAds from "./AllAds";
 
 export default class App extends React.Component {
     constructor(props) {
@@ -32,32 +35,29 @@ export default class App extends React.Component {
         return (
             <BrowserRouter className="App">
                 <div>
-                    <header>
-                        <img
-                            id="logo"
-                            src="/logo.png"
-                            alt="super"
-                            height={50}
-                        />
-                        <ul>
-                            <li>
-                                <a href="/logout">logout</a>
-                            </li>
-                            <li>
-                                <Link to="/">{this.state.first}'s profile</Link>
-                            </li>
-                        </ul>
+                    <header className="header">
+                        <a href="/">
+                            <img
+                                id="logo"
+                                src="/PostAd_logotype_white.png"
+                                alt="logo"
+                                height={50}
+                            />
+                        </a>
+                        <nav className="navigation">
+                            <Link to="/">{this.state.first}'s profile</Link>
+                            <Link to="/allads">ads</Link>
+                            <a href="/logout">logout</a>
+                            <ProfilePic
+                                url={this.state.url}
+                                first={this.state.first}
+                                last={this.state.last}
+                                onClick={() =>
+                                    this.setState({ uploaderIsVisible: true })
+                                }
+                            />
+                        </nav>
                     </header>
-                    <div>
-                        <ProfilePic
-                            url={this.state.url}
-                            first={this.state.first}
-                            last={this.state.last}
-                            onClick={() =>
-                                this.setState({ uploaderIsVisible: true })
-                            }
-                        />
-                    </div>
                     <div>
                         <PostUploadButton
                             onClick={() =>
@@ -65,6 +65,7 @@ export default class App extends React.Component {
                             }
                         />
                     </div>
+                    <Route exact path="/allads" component={AllAds} />
                     <Route
                         exact
                         path="/"
@@ -139,7 +140,6 @@ export default class App extends React.Component {
                             }
                         />
                     )}
-
                     {this.state.postUploaderIsVisible && (
                         <PostUploader
                             onClick
