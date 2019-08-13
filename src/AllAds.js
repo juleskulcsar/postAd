@@ -14,9 +14,9 @@ export default function AllAds() {
     }, []);
 
     return (
-        <div>
+        <div className="create-ad">
             <h3>create ad</h3>
-            <TileUploader />
+                <TileUploader />
             <div>
                 <h3>all ads</h3>
                 <div className="ads-list">

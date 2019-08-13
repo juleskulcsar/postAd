@@ -9,7 +9,7 @@ export default function(state = {}, action) {
     if (action.type == "NEW_AD") {
     return {
         ...state,
-        ads: [...state.ads, action.ad]
+        ads: [ action.ad, ...state.ads]
     };
 }
     return state;

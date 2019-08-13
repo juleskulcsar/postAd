@@ -140,6 +140,12 @@
     color: white;
 }
 
+.tile-uploader {
+    /* margin-left: 10%; */
+}
+.create-ad {
+    /* margin-left: 120px; */
+}
 .ads-list {
     display: -webkit-flex;
     display: flex;
@@ -148,9 +154,9 @@
     -webkit-justify-content: center;
     justify-content: center;
     -webkit-flex-flow: column wrap;
-    flex-flow: column wrap;
+    flex-flow: column-reverse wrap;
     -webkit-align-content: stretch;
-    align-content: stretch;
+    align-content: center;
     flex-wrap: wrap;
     flex-direction: column;
     height: 1000px;
