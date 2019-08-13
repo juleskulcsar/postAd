@@ -140,11 +140,25 @@
     color: white;
 }
 
-.tile-uploader {
-    /* margin-left: 10%; */
+.tileUploader {
+    margin-left: 120px;
 }
-.create-ad {
-    /* margin-left: 120px; */
+
+/* .tileUploader button {
+    position: relative;
+    float: right;
+    font-size: 60px;
+    font-weight: 100;
+    outline: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: none;
+    margin-left: 120px;
+    color: white;
+} */
+.create-ad h3 {
+    margin-left: 120px;
 }
 .ads-list {
     display: -webkit-flex;

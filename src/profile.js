@@ -4,7 +4,7 @@ import EditBio from "./editprofile";
 import EditSkills from "./editskills";
 import EditLocation from "./editlocation";
 import Uploader from "./uploader";
-import TileUploader from "./TileUploader";
+// import TileUploader from "./TileUploader";
 
 export default function Profile(props) {
     return (
@@ -28,12 +28,3 @@ export default function Profile(props) {
         </div>
     );
 }
-// <div id="prof">
-//     <ProfilePic
-//         size="jumbo"
-//         url={props.url}
-//         first={props.first}
-//         last={props.last}
-//         onClick={props.onClick}
-//     />
-// </div>

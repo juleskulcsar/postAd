@@ -15,7 +15,7 @@ const store = createStore(
     composeWithDevTools(applyMiddleware(reduxPromise))
 );
 
-let elem = <Welcome />;
+let elem;
 
 if (location.pathname == "/welcome") {
     elem = <Welcome />;
