@@ -222,6 +222,22 @@ app.post(
     }
 );
 
+app.get("/user/:id.json", async (req, res) => {
+    try {
+        const { id } = req.params;
+        if (id == req.session.userId) {
+            res.json({
+                error: true,
+                sameUser: true
+            });
+        }
+        const results = await db.getUserById(id);
+        res.json(results.rows[0]);
+    } catch (err) {
+        console.log("error in get user/:id: ", err);
+    }
+});
+
 //logout
 app.get("/logout", (req, res) => {
     req.session = null;
