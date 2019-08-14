@@ -82,7 +82,7 @@ app.post("/signup", async (req, res) => {
         let hash = await bcrypt.hashPassword(password);
         let id = await db.addUserInfo(first, last, email, hash, registeras);
         req.session.userId = id.rows[0].id;
-        console.log("addUserInfo returns: ", id);
+        // console.log("addUserInfo returns: ", id);
         res.json({ success: true });
     } catch (err) {
         console.log("err in POST /register", err);
@@ -121,7 +121,7 @@ app.post("/login", (req, res) => {
 app.get("/profile", async (req, res) => {
     try {
         let user = await db.getUserById(req.session.userId);
-        console.log("user in /profile:", user);
+        // console.log("user in /profile:", user);
         if (user.rows[0].url === null) {
             user.rows[0].url = "/default.jpg";
         }
@@ -205,7 +205,7 @@ app.post("/post", async (req, res) => {
 app.get("/allposts.json", async (req, res) => {
     try {
         const { rows } = await db.getAllPosts();
-        console.log("wtf is this rows in /allposts.json: ", rows);
+        // console.log("wtf is this rows in /allposts.json: ", rows);
         res.json(rows);
     } catch (err) {
         console.log("err in GET /allposts.json: ", err);
@@ -253,8 +253,8 @@ app.post("/ads", async (req, res) => {
     try {
         let id = await db.addAdInfo(req.session.userId, title, description);
         let result = await db.getUserById(req.session.userId);
-        console.log("result in POST ADS: ", result.rows);
-        console.log("Id in POST/ads:", id);
+        // console.log("result in POST ADS: ", result.rows);
+        // console.log("Id in POST/ads:", id);
         res.json({
             ad_id: id.rows[0].ad_id,
             user_id: id.rows[0].user_id,
@@ -271,7 +271,7 @@ app.post("/ads", async (req, res) => {
 app.get("/allads.json", async (req, res) => {
     try {
         const { rows } = await db.getAllAds();
-        console.log("wtf is this rows in /allads.json: ", rows);
+        // console.log("wtf is this rows in /allads.json: ", rows);
         res.json(rows);
     } catch (err) {
         console.log("err in GET /allads.json: ", err);
@@ -288,12 +288,59 @@ app.get("/project/:post_id.json", async (req, res) => {
         //     });
         // }
         const results = await db.getProjectById(post_id);
-        console.log("results in get project by id: ", results.rows);
+        // console.log("results in get project by id: ", results.rows);
         res.json(results.rows[0]);
     } catch (err) {
         console.log("error in get project/:id: ", err);
     }
 });
+
+//------------------------fav ads ----------------------
+
+app.get("/ads/:fav_id.json", async (req, res) => {
+    console.log("req.params.fav_id: ", req.params);
+    try {
+        const results = await db.getFavAdsStatus(
+            req.session.userId,
+            req.params.fav_id
+        );
+        if (!results.rows[0]) {
+            res.json({
+                btnText: "save"
+            });
+        } else {
+            res.json({
+                btnText: "remove"
+            });
+        }
+    } catch (err) {
+        console.log("err in GET /getFavAdsStatus: ", err);
+    }
+});
+
+app.post("/ads/:fav_id.json", async (req, res) => {
+    console.log("testing req.body in POST ads/: ", req.body);
+    try {
+        if (req.body.button == "save") {
+            await db.saveFavAds(req.session.userId, req.params.fav_id);
+            // if (socketsIdMap[req.params.otherProfileId])
+            //     socketsIdMap[req.params.otherProfileId].emit(
+            //         "new friend request",
+            //         {
+            //             sender: req.session.userId,
+            //             receiver: req.params.otherProfileId
+            //         }
+            //     );
+            res.json({
+                btnText: "remove"
+            });
+        }
+    } catch (err) {
+        console.log("err in POST /ads/:fav_id ", err);
+    }
+});
+
+//------------------------fav ads ----------------------
 
 //logout
 app.get("/logout", (req, res) => {
