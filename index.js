@@ -183,7 +183,7 @@ app.post("/upload", uploader.single("file"), s3.upload, async (req, res) => {
         console.log("error in POST /upload; ", err);
     }
 });
-//post image upload
+//--------------post image upload----------------------
 app.post("/post", async (req, res) => {
     const { post_url, title, description } = req.body;
 
@@ -201,7 +201,9 @@ app.post("/post", async (req, res) => {
         console.log("err in POST /post", err);
     }
 });
+//--------------post image upload----------------------
 
+//----------------get all posts for each profile--------------
 app.get("/allposts.json", async (req, res) => {
     try {
         const { rows } = await db.getAllPosts();
@@ -211,6 +213,19 @@ app.get("/allposts.json", async (req, res) => {
         console.log("err in GET /allposts.json: ", err);
     }
 });
+//----------------get all posts for each profile--------------
+
+//----------get timeline all posts----------------
+app.get("/timeline.json", async (req, res) => {
+    try {
+        const { rows } = await db.getAllPosts();
+        // console.log("wtf is this rows in /allposts.json: ", rows);
+        res.json(rows);
+    } catch (err) {
+        console.log("err in GET /timeline.json: ", err);
+    }
+});
+//----------get timeline all posts----------------
 
 app.post(
     "/postimageupload",

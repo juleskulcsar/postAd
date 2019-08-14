@@ -14,6 +14,7 @@ import AllAds from "./AllAds";
 import OtherProfile from "./otherprofile";
 import ProjectModal from "./projectmodal";
 import { PrivateChat } from "./privateChat";
+import Timeline from "./timeline";
 
 export default class App extends React.Component {
     constructor(props) {
@@ -49,6 +50,7 @@ export default class App extends React.Component {
                         </a>
                         <nav className="navigation">
                             <Link to="/">{this.state.first}'s profile</Link>
+                            <Link to="/timeline.json">recently added</Link>
                             <Link to="/allads">ads</Link>
                             <a href="/logout">logout</a>
                             <PostUploadButton
@@ -168,6 +170,7 @@ export default class App extends React.Component {
                         }}
                     />
                     <Route path="/allposts.json" component={Portfolio} />
+                    <Route path="/timeline.json" component={Timeline} />
                     {this.state.uploaderIsVisible && (
                         <Uploader
                             onClick

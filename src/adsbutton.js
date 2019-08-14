@@ -25,8 +25,23 @@ export default function AdsButton(props) {
         })();
     }, []);
 
+    // var grey = "#808080";
+    //
+    // var Toggle = React.createClass({
+    // getInitialState: function(){
+    // 	return {
+    // 		color: grey;
+    // 	}
+    // },
+    //
+    // randomColor: function() {
+    //     var colory = '#FF8C00';
+    //     this.setState({color: colory});
+    //
+    // }
+
     async function submit() {
-        console.log("submit btn!!");
+        // console.log("submit btn!!");
         // console.log("button submit", button);
         try {
             if (button == "save") {
@@ -44,7 +59,11 @@ export default function AdsButton(props) {
 
     return (
         <div>
-            <button className="adsbutton" onClick={submit}>
+            <button
+                style={{ color: "#FF8C00" }}
+                className="adsbutton"
+                onClick={submit}
+            >
                 {button}
             </button>
         </div>
