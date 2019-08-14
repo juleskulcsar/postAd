@@ -266,7 +266,7 @@ a:-webkit-any-link {
     width: 300px;
     object-fit: cover;
     margin: 10px;
-    border: 4px solid grey;
+    border: 4px solid #313131;
 }
 
 .uploader, .postUploader {
@@ -582,6 +582,40 @@ a:-webkit-any-link {
 
 .chat-container p {
     margin: 0;
+}
+
+.posts {
+  position: relative;
+  /* width: 50%;
+  max-width: 300px; */
+}
+/*
+#image-in-posts {
+  display: block;
+  width: 100%;
+  height: auto;
+} */
+
+.overlay {
+  position: absolute;
+  bottom: 15px;
+  left: 10px;
+  background: rgb(0, 0, 0);
+  background: rgba(0, 0, 0, 0.5); /* Black see-through */
+  color: #f1f1f1;
+  width: 300px;
+  transition: .5s ease;
+  opacity:0;
+  color: #DCDCDC;
+  font-size: 15px;
+  padding: 20px;
+  text-align: center;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+}
+
+.posts:hover .overlay {
+  opacity: 1;
 }
 /*
 #postuplbutton {
