@@ -8,6 +8,7 @@ import PostUploadButton from "./uploadpostbutton";
 import PostUploader from "./addpost";
 // import PostUploader from "./addpost";
 import Portfolio from "./portfolio";
+import { PrivateChat } from "./privateChat";
 // console.log("this is portfolio: ", Portfolio);
 // import TileUploader from "./TileUploader";
 
@@ -33,6 +34,12 @@ export default function Profile(props) {
                     location={props.location}
                     done={props.changeLocation}
                 />
+                <div>
+                    <PrivateChat
+                        className="privatechat"
+                        receiver_id={props.receiver_id}
+                    />
+                </div>
             </div>
             <Portfolio id={props.id} />
         </div>

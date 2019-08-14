@@ -8,7 +8,7 @@ import AdsButton from "./adsbutton";
 export default function AllAds() {
     const dispatch = useDispatch();
     const list = useSelector(state => state.ads);
-    // console.log("LIST in ALLADS", list);
+    console.log("LIST in ALLADS", list);
 
     useEffect(() => {
         dispatch(receiveAllAds());
@@ -33,7 +33,7 @@ export default function AllAds() {
                                         - posted by {ad.first} {ad.last}
                                     </p>
                                 </Link>
-                                <AdsButton id={ad.ad_id} />
+                                <AdsButton fav_id={ad.ad_id} />
                             </div>
                         ))}
                 </div>

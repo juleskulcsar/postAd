@@ -50,6 +50,6 @@ CREATE TABLE favorites (
     id SERIAL PRIMARY KEY,
     user_id INT NOT NULL REFERENCES users(id),
     fav_id INT NOT NULL REFERENCES ads(ad_id),
-    favorized BOOLEAN DEFAULT false,
+    favorized BOOLEAN DEFAULT true,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );

@@ -14,11 +14,11 @@ export default function AdsButton(props) {
         (async () => {
             try {
                 console.log("buttoniiii", button);
-                console.log("props.id", props.id);
-                const data = await axios.post(`/ads/${props.id}.json`);
+                console.log("props.id", props.fav_id);
+                const { data } = await axios.get(`/ads/${props.fav_id}.json`);
                 // console.log("data.data.buttonText", data.buttonText);
                 console.log("data.data.buttonText", data);
-                setButton(data.data.btnText);
+                setButton(data.btnText);
             } catch (err) {
                 console.log("err in submit btn", err);
             }
@@ -27,11 +27,16 @@ export default function AdsButton(props) {
 
     async function submit() {
         console.log("submit btn!!");
-        console.log("button submit", button);
+        // console.log("button submit", button);
         try {
-            const data = await axios.post(`/ads/${props.fav_id}.json`);
-            console.log("data", data);
-            setButton(data.data.btnText);
+            if (button == "save") {
+                console.log("button submit", button);
+                const data = await axios.post(`/ads/${props.fav_id}.json`, {
+                    button
+                });
+                console.log("data", data);
+                setButton(data.data.btnText);
+            }
         } catch (err) {
             console.log("err in submit btn", err);
         }

@@ -298,7 +298,7 @@ app.get("/project/:post_id.json", async (req, res) => {
 //------------------------fav ads ----------------------
 
 app.get("/ads/:fav_id.json", async (req, res) => {
-    console.log("req.params.fav_id: ", req.params);
+    console.log("req.params.fav_id: ", req.params.fav_id);
     try {
         const results = await db.getFavAdsStatus(
             req.session.userId,
@@ -322,6 +322,7 @@ app.post("/ads/:fav_id.json", async (req, res) => {
     console.log("testing req.body in POST ads/: ", req.body);
     try {
         if (req.body.button == "save") {
+            console.log("wtf is this fav_id: ", req.params.fav_id);
             await db.saveFavAds(req.session.userId, req.params.fav_id);
             // if (socketsIdMap[req.params.otherProfileId])
             //     socketsIdMap[req.params.otherProfileId].emit(
