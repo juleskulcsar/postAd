@@ -107,6 +107,23 @@ exports.getAllAds = function getAllAds() {
         ON (user_id = users.id)`
     );
 };
+exports.getFavAdsStatus = function getFavAdsStatus(user_id, fav_id) {
+    return db.query(
+        `SELECT * FROM favorites
+        WHERE (user_id = $1 AND fav_id = $2)
+        OR (user_id = $2 AND fav_id = $1)`,
+        [user_id, fav_id]
+    );
+};
+
+exports.saveFavAds = function saveFavAds(user_id, fav_id) {
+    return db.query(
+        `INSERT into favorites (user_id, fav_id)
+        VALUES ($1, $2)
+        RETURNING *`,
+        [user_id, fav_id]
+    );
+}
 //---------all ads stuff -------------------------------------
 
 //---------private messages---------------------------------

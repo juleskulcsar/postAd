@@ -27,22 +27,22 @@ export default class OtherProfile extends React.Component {
 
     render() {
         return (
-            <div>
-                <div>
+            <div id="other-profile">
+                <div className="other-profile-info-sidebar">
                     <img
+                        className="other-profile-image"
                         src={this.state.url || "/default.png"}
                         alt={`${this.state.first} ${this.state.last}`}
                     />
-                    <p>
+                    <p className="other-profile-name">
                         {this.state.first} {this.state.last}
                     </p>
-                    <div className="bio">
+                    <p className="other-profile-registered-as">- registered as a {this.state.registeras}.</p>
+                    <div className="other-profile-bio">
                         {this.state.bio ? this.state.bio : "No bio yet"}
                     </div>
-                </div>
-                <div>
                     <PrivateChat
-                        className="privatechat"
+                        className="contact-me"
                         receiver_id={this.props.match.params.id}
                     />
                 </div>

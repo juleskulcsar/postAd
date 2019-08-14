@@ -27,14 +27,17 @@ export default class ProjectModal extends React.Component {
 
     render() {
         return (
-            <div>
-                <img src={this.state.post_url} />
-                <p>{this.state.title}</p>
-                <p>{this.state.description}</p>
-                <p>
-                    created by: {this.state.first} {this.state.last}
-                </p>
+            <div className="project-modal">
+                <img className="project-pic-sidebar" src={this.state.post_url} />
+                <div className="project-modal-info">
+                    <p className="project-modal-info-title">{this.state.title}</p>
+                    <p className="project-modal-info-description">{this.state.description}</p>
+                </div>
             </div>
         );
     }
+
+    // <p>
+    //     created by: {this.state.first} {this.state.last}
+    // </p>
 }
