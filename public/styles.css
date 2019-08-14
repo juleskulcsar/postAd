@@ -335,19 +335,47 @@ a:-webkit-any-link {
     align-content: center;
     flex-wrap: wrap;
     flex-direction: column;
-    height: 1000px;
+    height: 2500px;
     margin-top: 50px;
     padding-top: 50px;
 }
 
 .ads {
-    width: 200px;
+    width: 250px;
     justify-content: space-around;
-    background-color: orange;
+    /* background-color: orange; */
     margin: 10px;
     align-self: flex-start;
+    padding: 25px;
+    border-radius: 10px;
+    /* background: -moz-linear-gradient(top, #e90796 0%, #e8fce1 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #e90796), color-stop(100%, #e8fce1));
+    background: -webkit-linear-gradient(top, #e90796 0%, #e8fce1 100%);
+    background: -ms-linear-gradient(top, #e90796 0%, #e8fce1 100%);
+    background: linear-gradient(to bottom, #e90796 0%, #e8fce1 100%); */
+    background: rgb(94,94,94);
+    background: linear-gradient(0deg, rgba(94,94,94,1) 0%, rgba(163,163,163,1) 100%);
+
 }
 
-.ads p {
-    background-color: orange;
+.tile-title {
+    background-color: inherit;
+    font-weight: 600;
+    font-size: 18px;
+    color: white;
+    padding-bottom: 20px;
+}
+
+.tile-desc {
+    background-color: inherit;
+    font-weight: 200;
+    font-size: 12px;
+    color: white;
+}
+
+.tile-postedby {
+    background-color: inherit;
+    font-weight: 400;
+    font-size: 15px;
+    color: white;
 }
