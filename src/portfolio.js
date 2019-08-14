@@ -24,21 +24,21 @@ export default function Portfolio(props) {
     console.log("or userId: ", userId);
 
     return (
-        <div className="posts-list">
-            <div className="posts">
-                <h2>portfolio</h2>
+        <div className="grid-container">
+            <div className="posts-list">
                 {list &&
                     list
                         .filter(user => {
                             return user.id == userId;
                         })
                         .map(post => (
-                            <div key={post.post_id}>
+                            <div className="posts" key={post.id}>
                                 <Link to={`/project/${post.post_id}`}>
-                                    <img src={post.post_url} />
+                                    <img
+                                        id="image-in-posts"
+                                        src={post.post_url}
+                                    />
                                 </Link>
-                                <p>{post.title}</p>
-                                <p>{post.description}</p>
                             </div>
                         ))}
             </div>
@@ -50,3 +50,5 @@ export default function Portfolio(props) {
 //         posted by {ad.first} {ad.last}
 //     </p>
 // </Link>
+// <p>{post.title}</p>
+// <p>{post.description}</p>

@@ -49,17 +49,15 @@ export default class App extends React.Component {
                         </a>
                         <nav className="navigation">
                             <Link to="/">{this.state.first}'s profile</Link>
-                            <div>
-                                <PostUploadButton
-                                    onClick={() =>
-                                        this.setState({
-                                            postUploaderIsVisible: true
-                                        })
-                                    }
-                                />
-                            </div>
                             <Link to="/allads">ads</Link>
                             <a href="/logout">logout</a>
+                            <PostUploadButton
+                                onClick={() =>
+                                    this.setState({
+                                        postUploaderIsVisible: true
+                                    })
+                                }
+                            />
                             <ProfilePic
                                 url={this.state.url}
                                 first={this.state.first}

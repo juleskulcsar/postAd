@@ -1,7 +1,7 @@
 import React from "react";
 
 export default function PostPic({ post_url, onClick, size }) {
-    post_url = post_url || "/post.png";
+    post_url = post_url || "/default.jpg";
     return (
         <div>
             <img

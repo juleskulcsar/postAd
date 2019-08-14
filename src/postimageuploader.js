@@ -27,11 +27,10 @@ export default class PostImageUploader extends React.Component {
 
     render() {
         return (
-            <div className="uploader">
-                <div className="changePic">
+            <div>
+                <div className="post-image-uploader">
                     <h3>upload project image</h3>
                     <input
-                        id="uploadPhoto"
                         type="file"
                         className="file"
                         name="file"

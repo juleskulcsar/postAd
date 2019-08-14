@@ -5,69 +5,6 @@ import Uploader from "./uploader";
 import PostPic from "./postpic";
 import PostImageUploader from "./postimageuploader";
 
-// import { newPost } from "./actions";
-// import { useDispatch, useSelector } from "react-redux";
-//
-// export default function PostUploader() {
-//     const dispatch = useDispatch();
-//     const posts = useSelector(state => state && state.ads);
-//
-//     const [url, setUrl] = useState("");
-//     const [title, setTitle] = useState("");
-//     const [description, setDescription] = useState("");
-//
-//     function submitPost() {
-//         dispatch(newPost(url, title, description));
-//         setTitle("");
-//         setDescription("");
-//     }
-//
-//     console.log("URL: ", url);
-//     console.log("title: ", title);
-//     console.log("desc: ", description);
-//
-//     return (
-//         <div className="postUploader">
-//             <PostPic
-//                 url={this.state.url}
-//                 onClick={() => this.setState({ uploaderIsVisible: true })}
-//                 onChange={e => setUrl(e.target.value)}
-//             />
-//             <input
-//                 name="title"
-//                 onChange={e => setTitle(e.target.value)}
-//                 placeholder="name of your ad"
-//                 value={title}
-//             />
-//             <textarea
-//                 name="description"
-//                 onChange={e => setDescription(e.target.value)}
-//                 placeholder="description"
-//                 value={description}
-//             />
-//             <button onClick={submitPost}>post</button>
-//
-//             {this.state.uploaderIsVisible && (
-//                 <PostImageUploader
-//                     onClick
-//                     done={image => {
-//                         this.setState({
-//                             url: image,
-//                             uploaderIsVisible: false
-//                         });
-//                     }}
-//                     handleClick={() =>
-//                         this.setState({
-//                             uploaderIsVisible: false
-//                         })
-//                     }
-//                 />
-//             )}
-//         </div>
-//     );
-// }
-// }
-
 export default class PostUploader extends React.Component {
     constructor(props) {
         super(props);

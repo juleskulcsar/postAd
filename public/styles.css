@@ -2,8 +2,9 @@
     box-sizing: border-box;
     font-family: Raleway, sans-serif;
     margin: 0;
-        background-color: #3f3f3f;
+    background-color: #3f3f3f;
 }
+
 .welcome {
     height: 100vh;
     background-position: center;
@@ -35,6 +36,102 @@
     padding: 30px;
 }
 
+.navigation button {
+    color: white;
+    font-weight: 100;
+    font-size: 80px;
+    /* padding: 30px; */
+    outline: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: none;
+    background-color: inherit;
+    position: relative;
+    bottom: 7px;
+    margin-right: 10px;
+}
+.registration {
+    margin-top: 30px;
+}
+
+.registration input, .login input {
+    -webkit-appearance: none;
+    border: none;
+    background-color: inherit;
+    outline: none;
+    outline-width: 0;
+    height: 40px;
+    width: 300px;
+    font-weight: 200;
+    font-size: 20px;
+    color: white;
+    margin-left: 50px;
+    display: block;
+    padding: 0;
+}
+.registration button, .login button {
+    outline: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: none;
+    color: white;
+    background-color: inherit;
+    font-family: Raleway, sans-serif;
+    font-weight: 800;
+    font-size: 20px;
+    letter-spacing: 0.2em;
+    margin-top: 20px;
+    margin-left: 50px;
+    padding: 0;
+    display: block;
+}
+
+::placeholder {
+  color: white;
+  letter-spacing: 0.1em;
+  font-size: 15px;
+  padding-top: 10px;
+  padding-left: 10px;
+}
+
+a:-webkit-any-link {
+    text-decoration: none;
+}
+
+.registration select {
+    outline: none;
+    appearance: none;
+    border: none;
+    background-color: #3f3f3f;
+    color: white;
+    width: 200px;
+    height: 50px;
+    font-size: 15px;
+    letter-spacing: 0.1em;
+    margin-left: 50px;
+    margin-top: 20px;
+}
+
+.registration p {
+    margin-left: 50px;
+    color: white;
+    text-decoration: none;
+    letter-spacing: 0.1em;
+    margin-top: 5px;
+
+}
+
+.login h1 {
+    margin-left: 50px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    letter-spacing: 0.1em;
+    font-weight: 200;
+    color: white;
+}
+
 .profileImage {
     object-fit: cover;
     width: 80px;
@@ -45,12 +142,12 @@
     filter: grayscale(100%);
     padding: 10px;
 }
-
+#profilepic-sidebar img {
+    width: 150px;
+}
 #profile {
     padding: 20px;
-}
-#profile img {
-    width: 200px;
+    display: flex;
 }
 
 #profile p {
@@ -83,7 +180,35 @@
     color: white;
 }
 
-.uploader {
+.profile-info-sidebar {
+    width: 325px;
+    margin: 0 0 30px 15px;
+}
+/* .grid-container {
+    display: flex;
+    justify-content: center;
+} */
+.posts-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    /* grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-gap: 1em;
+    align-items: center;
+    width: 70vh;
+    height: 1000px;
+    margin-top: 50px; */
+}
+
+#image-in-posts{
+    height: 300px;
+    width: 300px;
+    object-fit: cover;
+    margin: 10px;
+    /* border: 5px solid white; */
+}
+
+.uploader, .postUploader {
     position: fixed;
     z-index: 9998;
     top: 0;
@@ -130,7 +255,7 @@
 .inputfile + label {
     font-size: 15px;
     font-weight: 200;
-    color: black;
+    color: white;
     display: inline-block;
     margin-left: 100px;
     margin-top: 20px;
@@ -140,36 +265,117 @@
     color: white;
 }
 
-.tile-uploader {
-    /* margin-left: 10%; */
+.tileUploader {
+    margin-left: 150px;
+    width: 350px;
 }
-.create-ad {
-    /* margin-left: 120px; */
+
+.tile-uploader-btn {
+    font-weight: 800;
+    font-size: 20px;
+    letter-spacing: 0.2em;
+    outline: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: none;
+    margin-left: 50px;
+    color: white;
+    display: block;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 20px;
+    /* position: relative; */
+    float: right;
+}
+
+.tileUploader input {
+    -webkit-appearance: none;
+    border: none;
+    background-color: inherit;
+    outline: none;
+    outline-width: 0;
+    height: 40px;
+    width: 300px;
+    font-weight: 200;
+    font-size: 20px;
+    color: white;
+    margin-left: 50px;
+    display: block;
+    padding: 0;
+}
+
+.tileUploader textarea {
+    -webkit-appearance: none;
+    background-color: inherit;
+    outline: none;
+    outline-width: 0;
+    height: 100px;
+    width: 300px;
+    font-weight: 200;
+    font-size: 20px;
+    color: white;
+    margin-left: 50px;
+    display: block;
+    padding: 0;
+    border-radius: 15px;
+}
+
+.create-ad h3 {
+    margin-left: 210px;
+    color: white;
+    letter-spacing: 0.1em;
 }
 .ads-list {
-    display: -webkit-flex;
     display: flex;
-    -webkit-align-items: center;
-    align-items: center;
-    -webkit-justify-content: center;
-    justify-content: center;
-    -webkit-flex-flow: column wrap;
-    flex-flow: column-reverse wrap;
-    -webkit-align-content: stretch;
+    align-items: flex-start;
+    justify-content: flex-start;
+    /* flex-flow: column wrap; */
+    flex-direction: row;
     align-content: center;
     flex-wrap: wrap;
     flex-direction: column;
-    height: 1000px;
+    height: 2500px;
+    margin-top: 50px;
+    padding-top: 50px;
 }
 
 .ads {
-    width: 200px;
+    width: 250px;
     justify-content: space-around;
-    background-color: orange;
+    /* background-color: orange; */
     margin: 10px;
+    align-self: flex-start;
+    padding: 25px;
+    border-radius: 10px;
+    /* background: -moz-linear-gradient(top, #e90796 0%, #e8fce1 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #e90796), color-stop(100%, #e8fce1));
+    background: -webkit-linear-gradient(top, #e90796 0%, #e8fce1 100%);
+    background: -ms-linear-gradient(top, #e90796 0%, #e8fce1 100%);
+    background: linear-gradient(to bottom, #e90796 0%, #e8fce1 100%); */
+    background: rgb(94,94,94);
+    background: linear-gradient(0deg, rgba(94,94,94,1) 0%, rgba(163,163,163,1) 100%);
 
 }
 
-.ads p {
-    background-color: orange;
+.tile-title {
+    background-color: inherit;
+    font-weight: 600;
+    font-size: 18px;
+    color: white;
+    padding-bottom: 20px;
+}
+
+.tile-desc {
+    background-color: inherit;
+    font-weight: 200;
+    font-size: 12px;
+    color: white;
+}
+
+.tile-postedby {
+    background-color: inherit;
+    font-weight: 400;
+    font-size: 15px;
+    color: white;
 }
