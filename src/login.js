@@ -32,16 +32,12 @@ export default class Login extends React.Component {
 
     render() {
         return (
-            <div>
-                <div>
-                    {this.state.error && (
-                        <div>Ooops! Something went wrong! Try again</div>
-                    )}
-                </div>
+            <div className="login">
+            <h1>login</h1>
                 <input
                     name="email"
                     onChange={e => this.handleChange(e)}
-                    palceholder="email"
+                    placeholder="email"
                 />
                 <input
                     type="password"
@@ -50,6 +46,11 @@ export default class Login extends React.Component {
                     placeholder="password"
                 />
                 <button onClick={e => this.submit(e)}>login</button>
+                <div>
+                    {this.state.error && (
+                        <div className="error">ooops! invalid e-mail or password.</div>
+                    )}
+                </div>
             </div>
         );
     }

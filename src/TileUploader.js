@@ -33,7 +33,7 @@ export default function TileUploader() {
                     placeholder="description"
                     value={description}
                 />
-                <button onClick={submitAd}>post</button>
+                <button className="tile-uploader-btn" onClick={submitAd}>post</button>
             </div>
         );
     }

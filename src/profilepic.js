@@ -9,7 +9,7 @@ export default function({ url, first, last, onClick, size }) {
                 src={url}
                 alt={`${first} ${last}`}
                 onClick={onClick}
-                height={size == "jumbo" ? 200 : 80}
+                height={size == "jumbo" ? 150 : 80}
             />
         </div>
     );

@@ -12,7 +12,7 @@ const config = require("./config");
 const cookieSession = require("cookie-session");
 const moment = require("moment");
 //socket.io stuff
-// const csurf = require("csurf");
+const csurf = require("csurf");
 const server = require("http").Server(app);
 const io = require("socket.io")(server, {
     origins: "localhost:8080 192.168.50.*:*"
@@ -50,11 +50,11 @@ io.use(function(socket, next) {
     cookieSessionMiddleware(socket.request, socket.request.res, next);
 });
 
-// app.use(csurf());
-// app.use(function(req, res, next) {
-//     res.cookie("mytoken", req.csrfToken());
-//     next();
-// });
+app.use(csurf());
+app.use(function(req, res, next) {
+    res.cookie("mytoken", req.csrfToken());
+    next();
+});
 
 if (process.env.NODE_ENV != "production") {
     app.use(
@@ -172,6 +172,7 @@ app.post("/location", async (req, res) => {
 //         console.log("error in get profile/:id: ", err);
 //     }
 // });
+
 //upload new profile image
 app.post("/upload", uploader.single("file"), s3.upload, async (req, res) => {
     const url = config.s3Url + req.file.filename;
@@ -182,10 +183,60 @@ app.post("/upload", uploader.single("file"), s3.upload, async (req, res) => {
         console.log("error in POST /upload; ", err);
     }
 });
-//logout
-app.get("/logout", (req, res) => {
-    req.session = null;
-    res.redirect("/welcome");
+//post image upload
+app.post("/post", async (req, res) => {
+    const { title, description } = req.body;
+
+    try {
+        let id = await db.addPost(req.session.userId, title, description);
+        console.log("Id in POST/post:", id);
+        // req.session.userId = id.rows[0].id;
+        res.json({ success: true });
+    } catch (err) {
+        console.log("err in POST /post", err);
+    }
+});
+
+app.get("/allposts.json", async (req, res) => {
+    try {
+        const { rows } = await db.getAllPosts();
+        console.log("wtf is this rows in /allposts.json: ", rows);
+        res.json(rows);
+    } catch (err) {
+        console.log("err in GET /allposts.json: ", err);
+    }
+});
+
+app.post(
+    "/postimageupload",
+    uploader.single("file"),
+    s3.upload,
+    async (req, res) => {
+        const url = config.s3Url + req.file.filename;
+        try {
+            const results = await db.updatePostImage(url, req.session.userId);
+            console.log("postimageupload: ", results.rows[0]);
+            res.json(results.rows[0].post_url);
+        } catch (err) {
+            console.log("error in POST /postimageupload; ", err);
+        }
+    }
+);
+
+app.get("/user/:id.json", async (req, res) => {
+    try {
+        const { id } = req.params;
+        if (id == req.session.userId) {
+            res.json({
+                error: true,
+                sameUser: true
+            });
+        }
+        const results = await db.getUserById(id);
+        res.json(results.rows[0]);
+    } catch (err) {
+        console.log("error in get user/:id: ", err);
+    }
 });
 
 //---------ads wall post stuff----------
@@ -199,13 +250,13 @@ app.post("/ads", async (req, res) => {
         console.log("result in POST ADS: ", result.rows);
         console.log("Id in POST/ads:", id);
         res.json({
-                    ad_id: id.rows[0].ad_id,
-                    user_id: id.rows[0].user_id,
-                    title: id.rows[0].title,
-                    description: id.rows[0].description,
-                    first: result.rows[0].first,
-                    last: result.rows[0].last
-                });
+            ad_id: id.rows[0].ad_id,
+            user_id: id.rows[0].user_id,
+            title: id.rows[0].title,
+            description: id.rows[0].description,
+            first: result.rows[0].first,
+            last: result.rows[0].last
+        });
     } catch (err) {
         console.log("err in POST /ads", err);
     }
@@ -219,6 +270,12 @@ app.get("/allads.json", async (req, res) => {
     } catch (err) {
         console.log("err in GET /allads.json: ", err);
     }
+});
+
+//logout
+app.get("/logout", (req, res) => {
+    req.session = null;
+    res.redirect("/welcome");
 });
 
 //keep this last
