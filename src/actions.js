@@ -39,3 +39,18 @@ export async function newAdd(title, description) {
         ad: data
     };
 }
+
+//private messages actions
+export function privateChatMessages(msgs) {
+    return {
+        type: "PRIVATE_MESSAGES",
+        msgs
+    };
+}
+
+export function privateChatMessage(msg) {
+    return {
+        type: "NEW_PRIVATE_MESSAGE",
+        msg
+    };
+}

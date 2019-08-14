@@ -11,6 +11,9 @@ import Portfolio from "./portfolio";
 import TileUploader from "./TileUploader";
 import Tile from "./Tile";
 import AllAds from "./AllAds";
+import OtherProfile from "./otherprofile";
+import ProjectModal from "./projectmodal";
+import { PrivateChat } from "./privateChat";
 
 export default class App extends React.Component {
     constructor(props) {
@@ -46,6 +49,15 @@ export default class App extends React.Component {
                         </a>
                         <nav className="navigation">
                             <Link to="/">{this.state.first}'s profile</Link>
+                            <div>
+                                <PostUploadButton
+                                    onClick={() =>
+                                        this.setState({
+                                            postUploaderIsVisible: true
+                                        })
+                                    }
+                                />
+                            </div>
                             <Link to="/allads">ads</Link>
                             <a href="/logout">logout</a>
                             <ProfilePic
@@ -58,14 +70,47 @@ export default class App extends React.Component {
                             />
                         </nav>
                     </header>
-                    <div>
-                        <PostUploadButton
-                            onClick={() =>
-                                this.setState({ postUploaderIsVisible: true })
-                            }
-                        />
-                    </div>
+                    <Route
+                        path="/user/:id"
+                        render={props => (
+                            <OtherProfile {...props} key={props.match.url} />
+                        )}
+                    />
+                    <Route
+                        exact
+                        path="/profile"
+                        render={() => {
+                            return (
+                                <div>
+                                    <PostUploadButton
+                                        onClick={() =>
+                                            this.setState({
+                                                postUploaderIsVisible: true
+                                            })
+                                        }
+                                    />
+                                </div>
+                            );
+                        }}
+                    />
                     <Route exact path="/allads" component={AllAds} />
+                    <Route
+                        exact
+                        path="/privatechat"
+                        render={props => {
+                            <PrivateChat
+                                key={props.match.url}
+                                match={props.match}
+                                history={props.history}
+                                receiver_id={props.match.params.id}
+                            />;
+                        }}
+                    />
+                    <Route
+                        exact
+                        path="/project/:post_id"
+                        component={ProjectModal}
+                    />
                     <Route
                         exact
                         path="/"
@@ -90,6 +135,7 @@ export default class App extends React.Component {
                                             location: location
                                         })
                                     }
+                                    id={this.state.id}
                                     url={this.state.url}
                                     first={this.state.first}
                                     last={this.state.last}
@@ -98,7 +144,7 @@ export default class App extends React.Component {
                                     onClick={() =>
                                         this.setState({
                                             uploaderIsVisible: true,
-                                            postUploaderIsVisible: true,
+                                            // postUploaderIsVisible: true,
                                             showBio: true,
                                             showSkills: true,
                                             showLocation: true

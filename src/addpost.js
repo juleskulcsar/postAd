@@ -79,6 +79,7 @@ export default class PostUploader extends React.Component {
         });
     }
     submit() {
+        console.log("this.state in addpost: ", this.state);
         axios
             .post("/post", {
                 post_url: this.state.post_url,

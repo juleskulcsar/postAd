@@ -25,5 +25,19 @@ export default function(state = {}, action) {
             ads: [action.ad, ...state.ads]
         };
     }
+
+    //private messages bonus
+    if (action.type == "PRIVATE_MESSAGES") {
+        state = {
+            ...state,
+            privateMessages: action.msgs
+        };
+    }
+    if (action.type == "NEW_PRIVATE_MESSAGE") {
+        state = {
+            ...state,
+            privateMessages: [...state.privateMessages, action.msg]
+        };
+    }
     return state;
 }

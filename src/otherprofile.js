@@ -1,5 +1,7 @@
 import React from "react";
 import axios from "./axios";
+import Portfolio from "./portfolio";
+import { PrivateChat } from "./privateChat";
 
 export default class OtherProfile extends React.Component {
     constructor(props) {
@@ -8,10 +10,11 @@ export default class OtherProfile extends React.Component {
     }
 
     async componentDidMount() {
+        console.log("component mounted");
         try {
             const id = this.props.match.params.id;
             console.log("this.props: ", this.props);
-            const { data } = await axios.get(`/user/${id}.json`);
+            const { data } = await axios.get(`/profile/${id}.json`);
             if (data.sameUser) {
                 this.props.history.push("/");
             }
@@ -37,6 +40,13 @@ export default class OtherProfile extends React.Component {
                         {this.state.bio ? this.state.bio : "No bio yet"}
                     </div>
                 </div>
+                <div>
+                    <PrivateChat
+                        className="privatechat"
+                        receiver_id={this.props.match.params.id}
+                    />
+                </div>
+                <Portfolio otherProfileId={this.props.match.params.id} />
             </div>
         );
     }

@@ -57,10 +57,10 @@ exports.updateLocation = function updateLocation(location, id) {
     );
 };
 
-exports.addPost = function addPost(user_id, title, description) {
+exports.addPost = function addPost(user_id, post_url, title, description) {
     return db.query(
-        `INSERT INTO posts(user_id, title, description) VALUES($1, $2, $3) RETURNING *`,
-        [user_id, title, description]
+        `INSERT INTO posts(user_id,post_url,  title, description) VALUES($1, $2, $3, $4) RETURNING *`,
+        [user_id, post_url, title, description]
     );
 };
 // exports.addPost = function addPost(user_id, post_url, title, description) {
@@ -84,7 +84,7 @@ exports.updatePostImage = function updatePostImage(post_url, user_id) {
 
 exports.getAllPosts = function getAllPosts() {
     return db.query(
-        `SELECT users.id, first, last, post_url, title, description
+        `SELECT users.id, first, last, post_id, post_url, title, description
         FROM posts
         JOIN users
         ON (user_id = users.id)`
@@ -108,3 +108,44 @@ exports.getAllAds = function getAllAds() {
     );
 };
 //---------all ads stuff -------------------------------------
+
+//---------private messages---------------------------------
+
+exports.savePrivateChatMessage = function savePrivateChatMessage(
+    sender_id,
+    receiver_id,
+    message
+) {
+    return db.query(
+        `INSERT INTO privatechat (sender_id, receiver_id, message)
+        VALUES ($1, $2, $3)
+        RETURNING *`,
+        [sender_id, receiver_id, message]
+    );
+};
+
+exports.getPrivateChatMessages = function getPrivateChatMessages(
+    sender_id,
+    receiver_id
+) {
+    return db.query(
+        `SELECT privatechat.id, sender_id, receiver_id, users.id as user_id, first, last, url, message, privatechat.created_at
+        FROM privatechat
+        LEFT JOIN users
+        ON users.id = sender_id
+        WHERE (sender_id = $1 AND receiver_id = $2)
+        OR (sender_id = $2 AND receiver_id = $1)
+        ORDER BY privatechat.created_at DESC`,
+        [sender_id, receiver_id]
+    );
+};
+//--------------- end of private messages------------------------
+
+//----------------get project by id------------------------------
+exports.getProjectById = function getProjectById(post_id) {
+    return db.query(
+        `SELECT post_id, post_url, title, description FROM posts WHERE post_id = $1`,
+        [post_id]
+    );
+};
+//----------------get project by id------------------------------

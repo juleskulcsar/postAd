@@ -157,21 +157,21 @@ app.post("/location", async (req, res) => {
     }
 });
 
-// app.get("/profile/:id.json", async (req, res) => {
-//     try {
-//         const { id } = req.params;
-//         if (id == req.session.userId) {
-//             res.json({
-//                 error: true,
-//                 sameUser: true
-//             });
-//         }
-//         const results = await db.getUserById(id);
-//         res.json(results.rows[0]);
-//     } catch (err) {
-//         console.log("error in get profile/:id: ", err);
-//     }
-// });
+app.get("/profile/:id.json", async (req, res) => {
+    try {
+        const { id } = req.params;
+        if (id == req.session.userId) {
+            res.json({
+                error: true,
+                sameUser: true
+            });
+        }
+        const results = await db.getUserById(id);
+        res.json(results.rows[0]);
+    } catch (err) {
+        console.log("error in get profile/:id: ", err);
+    }
+});
 
 //upload new profile image
 app.post("/upload", uploader.single("file"), s3.upload, async (req, res) => {
@@ -185,10 +185,15 @@ app.post("/upload", uploader.single("file"), s3.upload, async (req, res) => {
 });
 //post image upload
 app.post("/post", async (req, res) => {
-    const { title, description } = req.body;
+    const { post_url, title, description } = req.body;
 
     try {
-        let id = await db.addPost(req.session.userId, title, description);
+        let id = await db.addPost(
+            req.session.userId,
+            post_url,
+            title,
+            description
+        );
         console.log("Id in POST/post:", id);
         // req.session.userId = id.rows[0].id;
         res.json({ success: true });
@@ -214,9 +219,10 @@ app.post(
     async (req, res) => {
         const url = config.s3Url + req.file.filename;
         try {
-            const results = await db.updatePostImage(url, req.session.userId);
-            console.log("postimageupload: ", results.rows[0]);
-            res.json(results.rows[0].post_url);
+            // const results = await db.updatePostImage(url, req.session.userId);
+            // console.log("postimageupload: ", results.rows[0]);
+            // res.json(results.rows[0].post_url);
+            res.json(url);
         } catch (err) {
             console.log("error in POST /postimageupload; ", err);
         }
@@ -272,6 +278,23 @@ app.get("/allads.json", async (req, res) => {
     }
 });
 
+app.get("/project/:post_id.json", async (req, res) => {
+    try {
+        const { post_id } = req.params;
+        // if (id == req.session.userId) {
+        //     res.json({
+        //         error: true,
+        //         sameUser: true
+        //     });
+        // }
+        const results = await db.getProjectById(post_id);
+        console.log("results in get project by id: ", results.rows);
+        res.json(results.rows[0]);
+    } catch (err) {
+        console.log("error in get project/:id: ", err);
+    }
+});
+
 //logout
 app.get("/logout", (req, res) => {
     req.session = null;
@@ -283,6 +306,126 @@ app.get("*", function(req, res) {
     res.sendFile(__dirname + "/index.html");
 });
 
-app.listen(8080, function() {
+let mySocketId;
+let onlineUsers = [];
+io.on("connection", function(socket) {
+    console.log(`a socket with the id ${socket.id} just connected`);
+    if (!socket.request.session.userId) {
+        return socket.disconnect(true);
+    }
+
+    // onlineUsers[socket.id] = socket.request.session.userId;
+    // mySocketId = socket.id;
+    const userId = socket.request.session.userId;
+    const socketId = socket.id;
+    onlineUsers[socketId] = userId;
+
+    onlineUsers.push({
+        userId,
+        socketId: socket.id
+    });
+    // onlineUsers.forEach(user => {
+    //     io.sockets.sockets[user.socketId].emit();
+    // });
+
+    // if (mySocketId) {
+    //     io.sockets.sockets[mySocketId].emit("privateChatMessage");
+    // }
+
+    // onlineUsers = Object.values(onlineUsers);
+
+    // console.log("online users: ", onlineUsers);
+
+    // const receiver = receiver_id.receiver_id;
+    socket.on("allPrivateMessages", receiver_id => {
+        // console.log("receiver id for get private messages: ", receiver_id);
+        // console.log("msg for get private messages: ", msg);
+        db.getPrivateChatMessages(socket.request.session.userId, receiver_id)
+            .then(data => {
+                for (let i = 0; i < data.rows.length; i++) {
+                    data.rows[i].created_at = moment(
+                        data.rows[i].created_at,
+                        moment.ISO_8601
+                    ).format("MMM Do YY");
+                }
+                // console.log("wtf is this? ", data.rows);
+                socket.emit("privateMessages", data.rows.reverse());
+            })
+            .catch(err => console.log("error in getPrivateMessages", err));
+    });
+
+    socket.on("privateMessages", (message, receiver_id) => {
+        // console.log("is this id logging? ", receiver_id);
+        db.savePrivateChatMessage(
+            socket.request.session.userId,
+            receiver_id,
+            message
+        )
+            .then(result => {
+                console.log("results from save private msg: ", result.rows[0]);
+                return db
+                    .getUserById(socket.request.session.userId)
+                    .then(data => {
+                        data.rows[0].user_id = data.rows[0].id;
+                        data.rows[0].id = result.rows[0].id;
+                        data.rows[0].message = result.rows[0].message;
+                        data.rows[0].created_at = result.rows[0].created_at;
+                        // data.rows[0].receiver_id = result.rows[0].receiver_id;
+                        // socket.emit("privateMessages", data.rows[0]);
+                        // if (onlineUsers[socketId] == receiver_id) {
+                        //     console.log("again receiver_id: ", receiver_id);
+                        //     onlineUsers.forEach(user => {
+                        //         io.sockets.sockets[user.socketId].emit(
+                        //             "newPrivateMessage",
+                        //             data.rows[0]
+                        //         );
+                        //     });
+                        // }
+                        // console.log("receiver_id is: ", receiver_id);
+                        // console.log("onlineusers: ", onlineUsers);
+                        let uniqueUsers = onlineUsers.filter(
+                            user => user.userId == receiver_id
+                        );
+                        // console.log("unique users: ", uniqueUsers);
+                        // console.log("uniqueusers: ", uniqueUsers[0].socketId);
+                        // console.log("data.rows[0]: ", data.rows[0]);
+                        // console.log("mysocket: ", socket.id);
+                        for (let i = 0; i < uniqueUsers.length; i++) {
+                            io.to(uniqueUsers[i].socketId).emit(
+                                "newPrivateMessage",
+                                data.rows[0]
+                            );
+                        }
+                        // io.to(uniqueUsers[0].socketId).emit(
+                        //     "newPrivateMessage",
+                        //     data.rows[0]
+                        // );
+                        io.to(socket.id).emit(
+                            "newPrivateMessage",
+                            data.rows[0]
+                        );
+                        //get the receiver's socket id
+
+                        // if (mySocketId) {
+                        //     io.sockets.sockets[mySocketId].emit(
+                        //         "privateChatMessage",
+                        //         data.rows[0]
+                        //     );
+                        // }
+                    });
+            })
+            .catch(err =>
+                console.log("error in index.js newPrivateMessage: ", err)
+            );
+    });
+
+    socket.on("disconnect", () => {
+        console.log(`a socket with the id ${socket.id} just disconnected`);
+    });
+}); //closes io.on
+
+server.listen(8080, function() {
     console.log("BAM BAM! Final Project set in motion!");
 });
+
+//private messaging

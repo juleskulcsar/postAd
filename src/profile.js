@@ -4,7 +4,8 @@ import EditBio from "./editprofile";
 import EditSkills from "./editskills";
 import EditLocation from "./editlocation";
 import Uploader from "./uploader";
-// import PostUploader from "./addpost";
+import PostUploadButton from "./uploadpostbutton";
+import PostUploader from "./addpost";
 import Portfolio from "./portfolio";
 // console.log("this is portfolio: ", Portfolio);
 // import TileUploader from "./TileUploader";
@@ -28,7 +29,8 @@ export default function Profile(props) {
                 location={props.location}
                 done={props.changeLocation}
             />
-            <Portfolio />
+
+            <Portfolio id={props.id} />
         </div>
     );
 }
