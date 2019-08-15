@@ -441,6 +441,10 @@ io.on("connection", function(socket) {
                 return db
                     .getUserById(socket.request.session.userId)
                     .then(data => {
+                        result.rows[0].created_at = moment(
+                            result.rows[0].created_at,
+                            moment.ISO_8601
+                        ).format("MMM Do YY");
                         data.rows[0].user_id = data.rows[0].id;
                         data.rows[0].id = result.rows[0].id;
                         data.rows[0].message = result.rows[0].message;
