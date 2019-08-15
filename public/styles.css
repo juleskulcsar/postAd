@@ -55,7 +55,8 @@
     margin-top: 30px;
 }
 
-.registration input, .login input {
+.registration input,
+.login input {
     -webkit-appearance: none;
     border: none;
     background-color: inherit;
@@ -70,7 +71,8 @@
     display: block;
     padding: 0;
 }
-.registration button, .login button {
+.registration button,
+.login button {
     outline: none;
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -89,11 +91,11 @@
 }
 
 ::placeholder {
-  color: white;
-  letter-spacing: 0.1em;
-  font-size: 15px;
-  padding-top: 10px;
-  padding-left: 10px;
+    color: white;
+    letter-spacing: 0.1em;
+    font-size: 15px;
+    padding-top: 10px;
+    padding-left: 10px;
 }
 
 a:-webkit-any-link {
@@ -120,7 +122,6 @@ a:-webkit-any-link {
     text-decoration: none;
     letter-spacing: 0.1em;
     margin-top: 5px;
-
 }
 
 .login h1 {
@@ -200,7 +201,7 @@ a:-webkit-any-link {
     margin-top: 50px; */
 }
 
-#image-in-posts{
+#image-in-posts {
     height: 300px;
     width: 300px;
     object-fit: cover;
@@ -208,7 +209,8 @@ a:-webkit-any-link {
     /* border: 5px solid white; */
 }
 
-.uploader, .postUploader {
+.uploader,
+.postUploader {
     position: fixed;
     z-index: 9998;
     top: 0;
@@ -225,7 +227,6 @@ a:-webkit-any-link {
     margin-left: 100px;
     letter-spacing: 0.1em;
     color: white;
-
 }
 
 .uploader button {
@@ -343,7 +344,6 @@ a:-webkit-any-link {
 .ads {
     width: 250px;
     justify-content: space-around;
-    /* background-color: orange; */
     margin: 10px;
     align-self: flex-start;
     padding: 25px;
@@ -353,9 +353,16 @@ a:-webkit-any-link {
     background: -webkit-linear-gradient(top, #e90796 0%, #e8fce1 100%);
     background: -ms-linear-gradient(top, #e90796 0%, #e8fce1 100%);
     background: linear-gradient(to bottom, #e90796 0%, #e8fce1 100%); */
-    background: rgb(94,94,94);
-    background: linear-gradient(0deg, rgba(94,94,94,1) 0%, rgba(163,163,163,1) 100%);
+    background: rgb(94, 94, 94);
+    background: linear-gradient(
+        0deg,
+        rgba(94, 94, 94, 1) 0%,
+        rgba(163, 163, 163, 1) 100%
+    );
+}
 
+.highlight-ads {
+    background-color: orange;
 }
 
 .tile-title {

@@ -170,4 +170,15 @@ exports.saveFavAds = function saveFavAds(user_id, fav_id) {
     );
 };
 
+exports.getAllFavs = function getAllFavs(favuser_id) {
+    return db.query(
+        `SELECT favorites.user_id as favuser_id, title, description, fav_id, favorized
+    FROM favorites
+    JOIN ads
+    ON fav_id = ad_id
+    WHERE favorites.user_id = $1`,
+        [favuser_id]
+    );
+};
+
 //-------------------favorites stuff-----------------------------

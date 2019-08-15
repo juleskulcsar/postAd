@@ -215,6 +215,18 @@ app.get("/allposts.json", async (req, res) => {
 });
 //----------------get all posts for each profile--------------
 
+//----------------get all favs---------------------------
+app.get("/allfavs.json", async (req, res) => {
+    try {
+        const { rows } = await db.getAllFavs(req.session.userId);
+        console.log("wtf is this rows in /allfavs.json: ", rows);
+        res.json(rows);
+    } catch (err) {
+        console.log("err in GET /allfavs.json: ", err);
+    }
+});
+//----------------get all favs---------------------------
+
 //----------get timeline all posts----------------
 app.get("/timeline.json", async (req, res) => {
     try {

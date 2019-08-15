@@ -14,6 +14,10 @@ export default function AllAds() {
         dispatch(receiveAllAds());
     }, []);
 
+    // const saveFav = () => {
+    //     props.save();
+    // };
+
     return (
         <div className="create-ad">
             <h3>create ad</h3>
@@ -33,7 +37,10 @@ export default function AllAds() {
                                         - posted by {ad.first} {ad.last}
                                     </p>
                                 </Link>
-                                <AdsButton fav_id={ad.ad_id} />
+                                <AdsButton
+                                    // saveFav={saveFav}
+                                    fav_id={ad.ad_id}
+                                />
                             </div>
                         ))}
                 </div>

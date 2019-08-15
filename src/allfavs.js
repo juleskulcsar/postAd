@@ -1,16 +1,17 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { receiveAllPostsTimeline } from "./actions";
+import { receiveAllFavs } from "./actions";
+import AdsButton from "./adsbutton";
 
-export default function Timeline() {
+export default function AllFavs() {
     console.log("testing testing");
     const dispatch = useDispatch();
-    const list = useSelector(state => state.posts);
-    console.log("LIST in Portfolio", list);
+    const favs = useSelector(state => state.favs);
+    console.log("LIST in allfavs", favs);
 
     useEffect(() => {
-        dispatch(receiveAllPostsTimeline());
+        dispatch(receiveAllFavs());
     }, []);
 
     // submit(){
@@ -20,19 +21,18 @@ export default function Timeline() {
     // }
 
     // console.log("testing props.id: ", props.id);
-    // let userId = props.otherProfileId || props.id;
-    // console.log("or userId: ", userId);
+    // let userId = props.id;
+    // console.log("allfavs userId: ", userId);
 
     return (
         <div className="grid-container">
             <div className="posts-list">
-                {list &&
-                    list.map(post => (
+                {favs &&
+                    favs.map(post => (
                         <div className="posts" key={post.id}>
-                            <Link to={`/project/${post.post_id}`}>
-                                <img id="image-in-posts" src={post.post_url} />
-                                <p> {post.title}</p>
-                            </Link>
+                            <p> {post.title} </p>
+                            <p> {post.description} </p>
+                            <AdsButton fav_id={post.fav_id} />
                         </div>
                     ))}
             </div>
@@ -46,3 +46,6 @@ export default function Timeline() {
 // </Link>
 // <p>{post.title}</p>
 // <p>{post.description}</p>
+// .filter(user => {
+//     return user.id == userId;
+// })

@@ -39,6 +39,9 @@ export default function AdsButton(props) {
     //     this.setState({color: colory});
     //
     // }
+    // function highlightAd() {
+    //     props.saveFav();
+    // }
 
     async function submit() {
         // console.log("submit btn!!");
@@ -51,6 +54,7 @@ export default function AdsButton(props) {
                 });
                 console.log("data", data);
                 setButton(data.data.btnText);
+            } else {
             }
         } catch (err) {
             console.log("err in submit btn", err);
@@ -69,3 +73,5 @@ export default function AdsButton(props) {
         </div>
     );
 }
+
+// highlightAd
