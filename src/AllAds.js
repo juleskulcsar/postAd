@@ -35,15 +35,15 @@ export default function AllAds() {
                 <div className="ads-list">
                     {list &&
                         list.map(ad => (
-                            <div className="ads" key={ad.ad_id}>
-                                <p className="tile-title">{ad.title}</p>
-                                <p className="tile-desc">{ad.description}</p>
-                                <Link className="tile-postedby" to={`/user/${ad.id}`}>
-                                    <p className="tile-postedby">
-                                        - posted by {ad.first} {ad.last}
-                                    </p>
-                                </Link>
-                            </div>
+                                <div className="ads" key={ad.ad_id}>
+                                    <p className="tile-title">{ad.title}</p>
+                                    <p className="tile-desc">{ad.description}</p>
+                                    <Link className="tile-postedby" to={`/user/${ad.id}`}>
+                                        <p className="tile-postedby">
+                                            - posted by {ad.first} {ad.last}
+                                        </p>
+                                    </Link>
+                                </div>
                         ))}
                 </div>
             </div>
