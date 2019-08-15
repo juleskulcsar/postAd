@@ -3,25 +3,11 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { receiveAllAds } from "./actions";
 import TileUploader from "./TileUploader";
-// import FriendButton from "./FriendButton";
+
 export default function AllAds() {
     const dispatch = useDispatch();
     const list = useSelector(state => state.ads);
     // console.log("LIST in ALLADS", list);
-
-//----change color in ads----------------------
-    // function toggleMenu (state) {
-    //   var newState = Object.assign({}, state)
-    //   newState.showHighlight = !newState.showHighlight
-    //   return newState;
-    // }
-    //
-    // const onClickButton = () => {
-    //     store.dispatch({
-    //     type: "TOGGLE_COLOR"
-    //   })
-    // }
-//----change color in ads----------------------
 
     useEffect(() => {
         dispatch(receiveAllAds());
@@ -50,11 +36,3 @@ export default function AllAds() {
         </div>
     );
 }
-
-// <span>
-//     { showHighlight ?
-//     <div className="ads-highlight">
-//     <a href="https://www.google.com" target="_blank">Google</a>
-//     </div> :
-//     '' }
-// </span>
