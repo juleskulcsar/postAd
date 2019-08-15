@@ -101,10 +101,12 @@ exports.addAdInfo = function addAdInfo(user_id, title, description) {
 
 exports.getAllAds = function getAllAds() {
     return db.query(
-        `SELECT ad_id, users.id, first, last, location, title, description
+        `SELECT favorized, ad_id, users.id, first, last, location, title, description
         FROM ads
         JOIN users
-        ON (user_id = users.id)`
+        ON (user_id = users.id)
+        FULL OUTER JOIN favorites
+        ON favorites.fav_id = ads.ad_id`
     );
 };
 //---------all ads stuff -------------------------------------
