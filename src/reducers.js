@@ -6,6 +6,20 @@ export default function(state = {}, action) {
         };
     }
 
+    if (action.type == "RECEIVE_TIMELINE") {
+        state = {
+            ...state,
+            posts: action.posts
+        };
+    }
+
+    if (action.type == "RECEIVE_ALLFAVS") {
+        state = {
+            ...state,
+            favs: action.favs
+        };
+    }
+
     if (action.type == "NEW_POST") {
         return {
             ...state,

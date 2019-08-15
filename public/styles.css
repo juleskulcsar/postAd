@@ -2,13 +2,16 @@
     box-sizing: border-box;
     font-family: Raleway, sans-serif;
     margin: 0;
-    background-color: #3f3f3f;
+    background-color: #333333;
 }
 
 .welcome {
     height: 100vh;
-    background-position: center;
-    background-repeat: no-repeat;
+    background: url("/PostAd_back_high.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 .welcome img {
@@ -52,17 +55,21 @@
     margin-right: 10px;
 }
 .registration {
-    margin-top: 30px;
+    /* margin-top: 30px; */
+    width: 400px;
+    margin: 0;
+    display: inline;
 }
 
-.registration input, .login input {
+.registration input,
+.login input {
     -webkit-appearance: none;
     border: none;
     background-color: inherit;
     outline: none;
     outline-width: 0;
     height: 40px;
-    width: 300px;
+    width: 200px;
     font-weight: 200;
     font-size: 20px;
     color: white;
@@ -70,7 +77,10 @@
     display: block;
     padding: 0;
 }
-.registration button, .login button, .bio-editor button {
+
+.registration button,
+.login button,
+.bio-editor button {
     outline: none;
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -88,12 +98,35 @@
     display: block;
 }
 
+.adsbutton {
+    background-color;
+    outline: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: none;
+    color: white;
+    font-weight: 400;
+    font-size: 15px;
+    letter-spacing: 0.1em;
+    margin-top: 10px;
+    margin-left: 10px;
+    padding: 0;
+    background-color: inherit;
+    /* display: block; */
+}
+
+.adsbutton:hover {
+    color: #FF8C00;
+    cursor: crosshair;
+}
+
 ::placeholder {
-  color: white;
-  letter-spacing: 0.1em;
-  font-size: 15px;
-  padding-top: 10px;
-  padding-left: 10px;
+    color: white;
+    letter-spacing: 0.1em;
+    font-size: 15px;
+    padding-top: 10px;
+    padding-left: 10px;
 }
 
 a:-webkit-any-link {
@@ -104,7 +137,7 @@ a:-webkit-any-link {
     outline: none;
     appearance: none;
     border: none;
-    background-color: #3f3f3f;
+    background-color: inherit;
     color: white;
     width: 200px;
     height: 50px;
@@ -120,7 +153,8 @@ a:-webkit-any-link {
     text-decoration: none;
     letter-spacing: 0.1em;
     margin-top: 5px;
-
+    background-color: inherit;
+    display: inline-block;
 }
 
 .login h1 {
@@ -145,18 +179,21 @@ a:-webkit-any-link {
 #profilepic-sidebar img {
     width: 150px;
 }
-#profile, #other-profile {
+#profile,
+#other-profile {
     padding: 20px;
     display: flex;
 }
 
-#profile p, .other-profile-info-sidebar p {
+#profile p,
+.other-profile-info-sidebar p {
     margin: 18px;
     width: 500px;
     color: white;
 }
 
-.profile-registered-as, .other-profile-registered-as {
+.profile-registered-as,
+.other-profile-registered-as {
     font-size: 13px;
     letter-spacing: 0.1em;
 }
@@ -178,7 +215,8 @@ a:-webkit-any-link {
     padding: 0;
 }
 
-.profile-name, .other-profile-name {
+.profile-name,
+.other-profile-name {
     margin: 15px;
     font-size: 30px;
     font-weight: 200;
@@ -192,15 +230,13 @@ a:-webkit-any-link {
     color: white;
 }
 
-.profile-info-sidebar, .other-profile-info-sidebar {
+.profile-info-sidebar,
+.other-profile-info-sidebar {
     width: 325px;
     height: 500px;
     margin: 0 0 30px 15px;
 }
-/* .grid-container {
-    display: flex;
-    justify-content: center;
-} */
+
 .other-profile-image {
     object-fit: cover;
     width: 150px;
@@ -229,7 +265,6 @@ a:-webkit-any-link {
     display: block;
     padding: 10px;
     border-radius: 15px;
-
 }
 
 .chat-textarea {
@@ -248,6 +283,10 @@ a:-webkit-any-link {
     padding: 10px;
     border-radius: 15px;
 }
+.timeline-grid-container {
+        display: flex;
+        justify-content: center;
+    }
 
 .posts-list {
     display: flex;
@@ -261,15 +300,23 @@ a:-webkit-any-link {
     margin-top: 50px; */
 }
 
-#image-in-posts{
+.timeline-posts-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 70vw;
+}
+
+#image-in-posts {
     height: 300px;
     width: 300px;
     object-fit: cover;
     margin: 10px;
-    border: 4px solid #313131;
+    border: 4px solid #272727;
 }
 
-.uploader, .postUploader {
+.uploader,
+.postUploader {
     position: fixed;
     z-index: 9998;
     top: 0;
@@ -286,10 +333,10 @@ a:-webkit-any-link {
     margin-left: 100px;
     letter-spacing: 0.1em;
     color: white;
-
 }
 
-.uploader button, #postuplbutton {
+.uploader button,
+#postuplbutton {
     position: relative;
     float: right;
     font-size: 60px;
@@ -404,30 +451,29 @@ a:-webkit-any-link {
 .ads {
     width: 250px;
     justify-content: space-around;
-    /* background-color: orange; */
     margin: 10px;
     align-self: flex-start;
     padding: 25px;
     border-radius: 10px;
-    /* background: -moz-linear-gradient(top, #e90796 0%, #e8fce1 100%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #e90796), color-stop(100%, #e8fce1));
-    background: -webkit-linear-gradient(top, #e90796 0%, #e8fce1 100%);
-    background: -ms-linear-gradient(top, #e90796 0%, #e8fce1 100%);
-    background: linear-gradient(to bottom, #e90796 0%, #e8fce1 100%); */
-    background: rgb(94,94,94);
-    background: linear-gradient(0deg, rgba(94,94,94,1) 0%, rgba(163,163,163,1) 100%);
-
+    background: rgb(94, 94, 94);
+    background: linear-gradient(
+        0deg,
+        rgba(94, 94, 94, 1) 0%,
+        rgba(163, 163, 163, 1) 100%
+    );
 }
+
 .ads:hover {
-    /* transition: .5s ease; */
-    /* background: rgba(255,255,255,0.1); */
-    /* opacity: 0.1; */
-    background: rgb(94,94,94);
-    background: linear-gradient(0deg, rgba(190,190,190,1) 0%, rgba(163,163,163,1) 100%);
+    background: rgb(94, 94, 94);
+    background: linear-gradient(
+        0deg,
+        rgba(190, 190, 190, 1) 0%,
+        rgba(163, 163, 163, 1) 100%
+    );
 }
 
-.ads .highlight {
-    background-color: orange;
+.highlighted {
+    background: orange;
 }
 
 .tile-title {
@@ -451,6 +497,7 @@ a:-webkit-any-link {
     font-size: 15px;
     color: white;
     margin-top: 5px;
+    cursor: crosshair;
 }
 
 .postUploader textarea {
@@ -541,7 +588,7 @@ a:-webkit-any-link {
     margin-left: 50px;
     margin-top: 100px;
     color: white;
-    font-weight:
+    font-weight: ;
 }
 
 .project-modal-info-title {
@@ -596,29 +643,48 @@ a:-webkit-any-link {
 }
 
 .posts {
-  position: relative;
+    position: relative;
 }
 
 .overlay {
-  position: absolute;
-  bottom: 15px;
-  left: 10px;
-  background: rgb(0, 0, 0);
-  background: rgba(0, 0, 0, 0.5); /* Black see-through */
-  color: #f1f1f1;
-  width: 300px;
-  transition: .5s ease;
-  opacity:0;
-  color: #DCDCDC;
-  font-size: 15px;
-  padding: 20px;
-  text-align: center;
-  font-weight: 400;
-  letter-spacing: 0.1em;
+    position: absolute;
+    bottom: 15px;
+    left: 10px;
+    background: rgb(0, 0, 0);
+    background: rgba(0, 0, 0, 0.5); /* Black see-through */
+    color: #f1f1f1;
+    width: 300px;
+    transition: 0.5s ease;
+    opacity: 0;
+    color: white;
+    font-size: 15px;
+    padding: 20px;
+    text-align: center;
+    font-weight: 400;
+    letter-spacing: 0.1em;
 }
-
+.timeline-overlay {
+    position: absolute;
+    bottom: 15px;
+    left: 10px;
+    background: rgb(0, 0, 0);
+    background: rgba(0, 0, 0, 0.5); /* Black see-through */
+    color: #f1f1f1;
+    width: 300px;
+    transition: 0.5s ease;
+    opacity: 0;
+    color: white;
+    font-size: 12px;
+    padding: 20px;
+    text-align: center;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+}
+.posts:hover .timeline-overlay {
+    opacity: 1;
+}
 .posts:hover .overlay {
-  opacity: 1;
+    opacity: 1;
 }
 /*
 #postuplbutton {

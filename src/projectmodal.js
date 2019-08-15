@@ -32,6 +32,9 @@ export default class ProjectModal extends React.Component {
                 <div className="project-modal-info">
                     <p className="project-modal-info-title">{this.state.title}</p>
                     <p className="project-modal-info-description">{this.state.description}</p>
+                        <p>
+                            posted by {this.state.first} {this.state.last}
+                        </p>
                 </div>
             </div>
         );

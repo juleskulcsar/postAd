@@ -8,7 +8,7 @@ export default class EditBio extends React.Component {
             editing: false,
             showCancel: false,
             showEdit: true,
-            editBio: "edit bio",
+            editBio: "edit profile",
             addBio: "add bio"
         };
     }
@@ -27,7 +27,7 @@ export default class EditBio extends React.Component {
                     showCancel: false,
                     showEdit: true,
                     addBio: "add bio",
-                    editBio: "edit bio"
+                    editBio: "edit profile"
                 });
                 this.props.done(data);
             })
@@ -89,7 +89,7 @@ export default class EditBio extends React.Component {
                                     this.setState({
                                         editing: false,
                                         showCancel: false,
-                                        editBio: "edit bio"
+                                        editBio: "edit profile"
                                     })
                                 }
                             >

@@ -14,6 +14,8 @@ import AllAds from "./AllAds";
 import OtherProfile from "./otherprofile";
 import ProjectModal from "./projectmodal";
 import { PrivateChat } from "./privateChat";
+import Timeline from "./timeline";
+import AllFavs from "./allfavs";
 
 export default class App extends React.Component {
     constructor(props) {
@@ -21,7 +23,8 @@ export default class App extends React.Component {
         this.state = {
             uploaderIsVisible: false,
             postUploaderIsVisible: false,
-            showBio: false
+            showBio: false,
+            highlight: false
         };
     }
 
@@ -49,6 +52,8 @@ export default class App extends React.Component {
                         </a>
                         <nav className="navigation">
                             <Link to="/">{this.state.first}'s profile</Link>
+                            <Link to="/timeline">recently added</Link>
+                            <Link to="/allfavs">your favs</Link>
                             <Link to="/allads">ads</Link>
                             <a href="/logout">logout</a>
                             <PostUploadButton
@@ -92,6 +97,7 @@ export default class App extends React.Component {
                         }}
                     />
                     <Route exact path="/allads" component={AllAds} />
+                    <Route exact path="/allfavs" component={AllFavs} />
                     <Route
                         exact
                         path="/privatechat"
@@ -168,6 +174,7 @@ export default class App extends React.Component {
                         }}
                     />
                     <Route path="/allposts.json" component={Portfolio} />
+                    <Route path="/timeline" component={Timeline} />
                     {this.state.uploaderIsVisible && (
                         <Uploader
                             onClick
@@ -205,3 +212,13 @@ export default class App extends React.Component {
         );
     }
 }
+
+// <Route
+//     exact
+//     path="/allads"
+//     render={
+//         <AllAds
+//             save={() => this.setState({ highlight: true })}
+//         />
+//     }
+// />

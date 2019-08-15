@@ -101,10 +101,12 @@ exports.addAdInfo = function addAdInfo(user_id, title, description) {
 
 exports.getAllAds = function getAllAds() {
     return db.query(
-        `SELECT ad_id, users.id, first, last, location, title, description
+        `SELECT favorized, ad_id, users.id, first, last, location, title, description
         FROM ads
         JOIN users
-        ON (user_id = users.id)`
+        ON (user_id = users.id)
+        FULL OUTER JOIN favorites
+        ON favorites.fav_id = ads.ad_id`
     );
 };
 exports.getFavAdsStatus = function getFavAdsStatus(user_id, fav_id) {
@@ -166,3 +168,36 @@ exports.getProjectById = function getProjectById(post_id) {
     );
 };
 //----------------get project by id------------------------------
+
+//-------------------favorites stuff-----------------------------
+
+exports.getFavAdsStatus = function getFavAdsStatus(user_id, fav_id) {
+    return db.query(
+        `SELECT * FROM favorites
+        WHERE (user_id = $1 AND fav_id = $2)
+        OR (user_id = $2 AND fav_id = $1)`,
+        [user_id, fav_id]
+    );
+};
+
+exports.saveFavAds = function saveFavAds(user_id, fav_id) {
+    return db.query(
+        `INSERT into favorites (user_id, fav_id)
+        VALUES ($1, $2)
+        RETURNING *`,
+        [user_id, fav_id]
+    );
+};
+
+exports.getAllFavs = function getAllFavs(favuser_id) {
+    return db.query(
+        `SELECT favorites.user_id as favuser_id, title, description, fav_id, favorized
+    FROM favorites
+    JOIN ads
+    ON fav_id = ad_id
+    WHERE favorites.user_id = $1`,
+        [favuser_id]
+    );
+};
+
+//-------------------favorites stuff-----------------------------

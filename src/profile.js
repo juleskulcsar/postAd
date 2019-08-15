@@ -8,6 +8,7 @@ import PostUploadButton from "./uploadpostbutton";
 import PostUploader from "./addpost";
 // import PostUploader from "./addpost";
 import Portfolio from "./portfolio";
+import { PrivateChat } from "./privateChat";
 // console.log("this is portfolio: ", Portfolio);
 // import TileUploader from "./TileUploader";
 
@@ -26,14 +27,28 @@ export default function Profile(props) {
                 </div>
                 <h3 className="profile-name">{`${props.first}`}'s profile</h3>
                 <p>{`${props.first} ${props.last}`}</p>
-                <p className="profile-registered-as"> - registered as a {`${props.registeras}`}</p>
+                <p className="profile-registered-as">
+                    {" "}
+                    - registered as a {`${props.registeras}`}
+                </p>
                 <EditBio bio={props.bio} done={props.changeBio} />
+                <div>
+                    <PrivateChat
+                        className="contact-me"
+                        receiver_id={props.receiver_id}
+                    />
+                </div>
             </div>
             <Portfolio id={props.id} />
         </div>
     );
 }
 
+// <EditSkills skills={props.skills} done={props.changeSkills} />
+// <EditLocation
+//     location={props.location}
+//     done={props.changeLocation}
+// />
 // <EditSkills skills={props.skills} done={props.changeSkills} />
 // <EditLocation
 //     location={props.location}

@@ -8,6 +8,22 @@ export async function receiveAllPosts() {
     };
 }
 
+export async function receiveAllPostsTimeline() {
+    const { data } = await axios.get("/timeline.json");
+    return {
+        type: "RECEIVE_TIMELINE",
+        posts: data
+    };
+}
+
+export async function receiveAllFavs() {
+    const { data } = await axios.get("/allfavs.json");
+    return {
+        type: "RECEIVE_ALLFAVS",
+        favs: data
+    };
+}
+
 export async function newPost(post_url, title, description) {
     console.log("actions receive posts:", post_url, title, description);
     const { data } = await axios.post("/post", {
