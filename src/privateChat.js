@@ -10,7 +10,7 @@ export function PrivateChat(props) {
         state => state && state.privateMessages
     );
     // privateChatMessages = Array.from(privateChatMessages);
-    // console.log("private messages are: ", privateChatMessages);
+    console.log("private messages are: ", privateChatMessages);
     const elemRef = useRef();
     useEffect(() => {
         elemRef.current.scrollTop =
@@ -48,7 +48,9 @@ export function PrivateChat(props) {
                                 src={message.url}
                                 alt={message.first}
                             />
-                            <p className="username">{message.first} {message.last} said</p>
+                            <p className="username">
+                                {message.first} {message.last} said
+                            </p>
                             <div>
                                 <p className="message">{message.message}</p>
                                 <p className="time">
