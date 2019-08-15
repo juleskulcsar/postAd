@@ -16,8 +16,10 @@ export async function receiveAllPostsTimeline() {
     };
 }
 
-export async function receiveAllFavs() {
-    const { data } = await axios.get("/allfavs.json");
+export async function receiveAllFavs(favorized) {
+    console.log("IN ACTION favs:", favorized);
+    const { data } = await axios.get("/allfavs.json", { favorized });
+    console.log("this is data from receive favs action:", data);
     return {
         type: "RECEIVE_ALLFAVS",
         favs: data
@@ -35,6 +37,18 @@ export async function newPost(post_url, title, description) {
     return {
         type: "NEW_POST",
         post: data
+    };
+}
+
+export async function saveFav(fav_id, button) {
+    console.log("actions savefav:", fav_id, button);
+    const { data } = await axios.post(`/ads/${fav_id}.json`, {
+        button
+    });
+    console.log("DATA in ACTION:", data);
+    return {
+        type: "NEW_FAV",
+        id: fav_id
     };
 }
 

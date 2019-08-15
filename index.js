@@ -445,7 +445,7 @@ io.on("connection", function(socket) {
                         data.rows[0].id = result.rows[0].id;
                         data.rows[0].message = result.rows[0].message;
                         data.rows[0].created_at = result.rows[0].created_at;
-                        // data.rows[0].receiver_id = result.rows[0].receiver_id;
+                        data.rows[0].receiver_id = result.rows[0].receiver_id;
                         // socket.emit("privateMessages", data.rows[0]);
                         // if (onlineUsers[socketId] == receiver_id) {
                         //     console.log("again receiver_id: ", receiver_id);
