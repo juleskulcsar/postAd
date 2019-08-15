@@ -37,8 +37,8 @@ export function PrivateChat(props) {
     };
 
     return (
-        <div className="test">
-            <h1>private chat</h1>
+        <div className="chat">
+            <h3>message me</h3>
             <div className="chat-container" ref={elemRef}>
                 {privateChatMessages &&
                     privateChatMessages.map(message => (
@@ -48,7 +48,7 @@ export function PrivateChat(props) {
                                 src={message.url}
                                 alt={message.first}
                             />
-                            <p>{message.first} said</p>
+                            <p className="username">{message.first} {message.last} said</p>
                             <div>
                                 <p className="message">{message.message}</p>
                                 <p className="time">
@@ -59,8 +59,8 @@ export function PrivateChat(props) {
                     ))}
             </div>
             <textarea
-                className="chat_textarea"
-                placeholder="add your message here"
+                className="chat-textarea"
+                placeholder="start typing..."
                 onKeyDown={keyPress}
             ></textarea>
         </div>

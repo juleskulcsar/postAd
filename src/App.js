@@ -42,7 +42,7 @@ export default class App extends React.Component {
             <BrowserRouter className="App">
                 <div>
                     <header className="header">
-                        <a href="/">
+                        <a href="/allads">
                             <img
                                 id="logo"
                                 src="/PostAd_logotype_white.png"

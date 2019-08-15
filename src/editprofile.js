@@ -44,6 +44,7 @@ export default class EditBio extends React.Component {
                 {this.state.editing && (
                     <div>
                         <textarea
+                            placeholder="start typing..."
                             defaultValue={this.props.bio}
                             cols="40"
                             rows="10"
@@ -83,7 +84,7 @@ export default class EditBio extends React.Component {
 
                         {this.state.showCancel ? (
                             <button
-                                className="bio"
+                                className="bio-button-cancel"
                                 onClick={() =>
                                     this.setState({
                                         editing: false,
@@ -92,7 +93,7 @@ export default class EditBio extends React.Component {
                                     })
                                 }
                             >
-                                Cancel
+                                cancel
                             </button>
                         ) : null}
                     </div>

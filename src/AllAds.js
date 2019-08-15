@@ -14,10 +14,6 @@ export default function AllAds() {
         dispatch(receiveAllAds());
     }, []);
 
-    // const saveFav = () => {
-    //     props.save();
-    // };
-
     return (
         <div className="create-ad">
             <h3>create ad</h3>
@@ -53,3 +49,11 @@ export default function AllAds() {
         </div>
     );
 }
+
+// <span>
+//     { showHighlight ?
+//     <div className="ads-highlight">
+//     <a href="https://www.google.com" target="_blank">Google</a>
+//     </div> :
+//     '' }
+// </span>

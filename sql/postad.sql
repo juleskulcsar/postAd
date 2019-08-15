@@ -31,7 +31,8 @@ CREATE TABLE ads (
     ad_id SERIAL primary key,
     user_id INT NOT NULL REFERENCES users(id),
     title text,
-    description VARCHAR(1000)
+    description VARCHAR(1500),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 DROP TABLE IF EXISTS privatechat;

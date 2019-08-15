@@ -27,16 +27,14 @@ export default function Profile(props) {
                 </div>
                 <h3 className="profile-name">{`${props.first}`}'s profile</h3>
                 <p>{`${props.first} ${props.last}`}</p>
-                <p>Registered as a {`${props.registeras}`}</p>
+                <p className="profile-registered-as">
+                    {" "}
+                    - registered as a {`${props.registeras}`}
+                </p>
                 <EditBio bio={props.bio} done={props.changeBio} />
-                <EditSkills skills={props.skills} done={props.changeSkills} />
-                <EditLocation
-                    location={props.location}
-                    done={props.changeLocation}
-                />
                 <div>
                     <PrivateChat
-                        className="privatechat"
+                        className="contact-me"
                         receiver_id={props.receiver_id}
                     />
                 </div>
@@ -45,3 +43,14 @@ export default function Profile(props) {
         </div>
     );
 }
+
+// <EditSkills skills={props.skills} done={props.changeSkills} />
+// <EditLocation
+//     location={props.location}
+//     done={props.changeLocation}
+// />
+// <EditSkills skills={props.skills} done={props.changeSkills} />
+// <EditLocation
+//     location={props.location}
+//     done={props.changeLocation}
+// />

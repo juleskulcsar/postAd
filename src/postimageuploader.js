@@ -32,14 +32,16 @@ export default class PostImageUploader extends React.Component {
                     <h3>upload project image</h3>
                     <input
                         type="file"
-                        className="file"
+                        className="inputfile"
                         name="file"
                         accept="image/*"
                         // encType="multipart/form-data"
                         onChange={e => this.upload(e)}
                     />
-                    <label id="label" htmlFor="file" />
-                    <button onClick={e => this.handleClick(e)}>Cancel</button>
+                    <label id="filelabel" ref="filelabel" htmlFor="file">
+                        select file
+                    </label>
+                    <button onClick={e => this.handleClick(e)}>cancel</button>
                 </div>
             </div>
         );

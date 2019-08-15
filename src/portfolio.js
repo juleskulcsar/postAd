@@ -32,13 +32,17 @@ export default function Portfolio(props) {
                             return user.id == userId;
                         })
                         .map(post => (
-                            <div className="posts" key={post.id}>
-                                <Link to={`/project/${post.post_id}`}>
-                                    <img
-                                        id="image-in-posts"
-                                        src={post.post_url}
-                                    />
-                                </Link>
+                            <div>
+                                <div className="posts" key={post.id}>
+                                    <Link to={`/project/${post.post_id}`}>
+                                        <img
+                                            class="image-in-posts"
+                                            id="image-in-posts"
+                                            src={post.post_url}
+                                        />
+                                    </Link>
+                                    <div class="overlay">{post.title}</div>
+                                </div>
                             </div>
                         ))}
             </div>
@@ -50,5 +54,5 @@ export default function Portfolio(props) {
 //         posted by {ad.first} {ad.last}
 //     </p>
 // </Link>
-// <p>{post.title}</p>
+
 // <p>{post.description}</p>

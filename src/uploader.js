@@ -37,7 +37,7 @@ export default class Uploader extends React.Component {
                         accept="image/*"
                         onChange={e => this.upload(e)}
                     />
-                    <label id="filelabel" ref="filelabel" htmlFor="file">
+                    <label ref="filelabel" htmlFor="file">
                         select file
                     </label>
             </div>

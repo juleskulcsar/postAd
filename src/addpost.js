@@ -15,6 +15,11 @@ export default class PostUploader extends React.Component {
             [e.target.name]: e.target.value
         });
     }
+
+    handleClick() {
+        this.props.handleClick();
+    }
+
     submit() {
         console.log("this.state in addpost: ", this.state);
         axios
@@ -38,6 +43,7 @@ export default class PostUploader extends React.Component {
     render() {
         return (
             <div className="postUploader">
+                <button id="postuplbutton" onClick={e => this.handleClick(e)}>X</button>
                 <PostPic
                     post_url={this.state.post_url}
                     onClick={() => this.setState({ uploaderIsVisible: true })}
