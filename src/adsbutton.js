@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 
-// import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "./axios";
+import { saveFav } from "./actions";
 
 export default function AdsButton(props) {
+    const dispatch = useDispatch();
     console.log("props!!!!!!!!", props);
 
     const [button, setButton] = useState();
@@ -25,41 +27,35 @@ export default function AdsButton(props) {
         })();
     }, []);
 
-    // var grey = "#808080";
-    //
-    // var Toggle = React.createClass({
-    // getInitialState: function(){
-    // 	return {
-    // 		color: grey;
-    // 	}
-    // },
-    //
-    // randomColor: function() {
-    //     var colory = '#FF8C00';
-    //     this.setState({color: colory});
-    //
-    // }
-    // function highlightAd() {
-    //     props.saveFav();
-    // }
-
     async function submit() {
         // console.log("submit btn!!");
         // console.log("button submit", button);
         try {
             if (button == "save") {
-                console.log("button submit", button);
-                const data = await axios.post(`/ads/${props.fav_id}.json`, {
-                    button
-                });
-                console.log("data", data);
-                setButton(data.data.btnText);
-            } else {
+                dispatch(saveFav(props.fav_id, button));
+                setButton("remove");
             }
         } catch (err) {
             console.log("err in submit btn", err);
         }
     }
+
+    // async function submit() {
+    //     // console.log("submit btn!!");
+    //     // console.log("button submit", button);
+    //     try {
+    //         if (button == "save") {
+    //             console.log("button submit", button);
+    //             const data = await axios.post(`/ads/${props.fav_id}.json`, {
+    //                 button
+    //             });
+    //             console.log("data", data);
+    //             setButton(data.data.btnText);
+    //         }
+    //     } catch (err) {
+    //         console.log("err in submit btn", err);
+    //     }
+    // }
 
     return (
         <div>

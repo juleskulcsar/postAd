@@ -29,7 +29,12 @@ export default function AllFavs() {
             <div className="posts-list">
                 {favs &&
                     favs.map(post => (
-                        <div className="posts" key={post.id}>
+                        <div
+                            className={
+                                post.favorized ? "ads highlighted" : "ads"
+                            }
+                            key={post.id}
+                        >
                             <p> {post.title} </p>
                             <p> {post.description} </p>
                             <AdsButton fav_id={post.fav_id} />

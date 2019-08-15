@@ -16,7 +16,7 @@ export default function(state = {}, action) {
     if (action.type == "RECEIVE_ALLFAVS") {
         state = {
             ...state,
-            favs: action.favs
+            favs: action.favs.reverse()
         };
     }
 
@@ -26,6 +26,21 @@ export default function(state = {}, action) {
             posts: [...state.posts, action.post]
         };
     }
+
+    if (action.type == "NEW_FAV") {
+        console.log("state,favs in reducers:", state.ads);
+        state = {
+            ...state,
+            ads: state.ads.map(item => {
+                if (action.id == item.ad_id) {
+                    return { ...item, favorized: true };
+                } else {
+                    return item;
+                }
+            })
+        };
+    }
+
     if (action.type == "RECEIVE_ADS") {
         state = {
             ...state,
@@ -39,11 +54,11 @@ export default function(state = {}, action) {
             ads: [action.ad, ...state.ads]
         };
     }
-//----change color in ads----------------------
+    //----change color in ads----------------------
     // if(action.type == "TOGGLE_COLOR") {
     //     return toggleMenu(state);
     // }
-//----change color in ads----------------------
+    //----change color in ads----------------------
 
     if (action.type == "PRIVATE_MESSAGES") {
         state = {

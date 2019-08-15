@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { receiveAllAds } from "./actions";
 import TileUploader from "./TileUploader";
 import AdsButton from "./adsbutton";
-// import FriendButton from "./FriendButton";
+
 export default function AllAds() {
     const dispatch = useDispatch();
     const list = useSelector(state => state.ads);
@@ -38,10 +38,7 @@ export default function AllAds() {
                                         - posted by {ad.first} {ad.last}
                                     </p>
                                 </Link>
-                                <AdsButton
-                                    // saveFav={saveFav}
-                                    fav_id={ad.ad_id}
-                                />
+                                <AdsButton fav_id={ad.ad_id} />
                             </div>
                         ))}
                 </div>
