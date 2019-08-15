@@ -60,7 +60,11 @@
     margin: 0;
     display: inline;
 }
-
+.login {
+    width: 400px;
+    margin: 0;
+    display: inline;
+}
 .registration input,
 .login input {
     -webkit-appearance: none;
@@ -164,6 +168,19 @@ a:-webkit-any-link {
     letter-spacing: 0.1em;
     font-weight: 200;
     color: white;
+    background-color: inherit;
+    width: 200px;
+    /* display: inline; */
+}
+
+.error {
+    width: 250px;
+    font-weight: 200;
+    font-size: 15px;
+    color: white;
+    margin-top: 20px;
+    margin-left: 50px;
+    margin-right: 0;
 }
 
 .profileImage {
@@ -499,10 +516,14 @@ a:-webkit-any-link {
 
 .highlighted {
     /* background: #ffcc33; */
-    background: rgb(255,204,51);
-    background: linear-gradient(0deg, rgba(255,204,51,1) 0%, rgba(255,213,118,0.6755077030812324) 100%);
+    /* background: rgb(255,204,51);
+    background: linear-gradient(0deg, rgba(255,204,51,1) 0%, rgba(255,213,118,0.6755077030812324) 100%); */
     /* background: rgb(255,204,51);
     background: linear-gradient(0deg, rgba(255,204,51,1) 0%, rgba(255,219,137,0.8603816526610644) 100%); */
+    /* background: rgb(255,204,51);
+    background: linear-gradient(0deg, rgba(255,204,51,1) 0%, rgba(255,177,0,0.6755077030812324) 100%); */
+    background: rgb(255,204,51);
+    background: linear-gradient(0deg, rgba(255,204,51,1) 0%, rgba(255,177,0,1) 100%);
 }
 
 .tile-title {
@@ -714,6 +735,10 @@ a:-webkit-any-link {
 }
 .posts:hover .overlay {
     opacity: 1;
+}
+button:hover {
+    color: #ffb100;
+    cursor: crosshair;
 }
 /*
 #postuplbutton {

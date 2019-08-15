@@ -66,9 +66,9 @@ export default class Signup extends React.Component {
                     <option value="developer">I'm a developer</option>
                 </select>
                 <button onClick={e => this.submit(e)}>register</button>
-                <div>
+                <div className="error">
                     {this.state.error && (
-                        <div className="error">
+                        <div>
                             ooops! something went wrong!
                         </div>
                     )}

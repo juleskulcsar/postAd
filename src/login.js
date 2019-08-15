@@ -46,9 +46,9 @@ export default class Login extends React.Component {
                     placeholder="password"
                 />
                 <button onClick={e => this.submit(e)}>login</button>
-                <div>
+                <div className="error">
                     {this.state.error && (
-                        <div className="error">ooops! invalid e-mail or password.</div>
+                        <div>ooops! invalid e-mail or password.</div>
                     )}
                 </div>
             </div>
