@@ -25,8 +25,12 @@ export default function(state = {}, action) {
             ads: [action.ad, ...state.ads]
         };
     }
+//----change color in ads----------------------
+    // if(action.type == "TOGGLE_COLOR") {
+    //     return toggleMenu(state);
+    // }
+//----change color in ads----------------------
 
-    //private messages bonus
     if (action.type == "PRIVATE_MESSAGES") {
         state = {
             ...state,

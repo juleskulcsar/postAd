@@ -419,6 +419,10 @@ a:-webkit-any-link {
 
 }
 
+.ads .highlight {
+    background-color: orange;
+}
+
 .tile-title {
     background-color: inherit;
     font-weight: 600;
@@ -586,15 +590,7 @@ a:-webkit-any-link {
 
 .posts {
   position: relative;
-  /* width: 50%;
-  max-width: 300px; */
 }
-/*
-#image-in-posts {
-  display: block;
-  width: 100%;
-  height: auto;
-} */
 
 .overlay {
   position: absolute;
