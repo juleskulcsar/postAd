@@ -65,7 +65,7 @@ export default class EditBio extends React.Component {
 
                 {this.props.bio && (
                     <div>
-                        <p>{this.props.bio}</p>
+                        <p className="profile-bio">{this.props.bio}</p>
                         {this.state.showEdit ? (
                             <button
                                 className="bio"

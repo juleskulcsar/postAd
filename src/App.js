@@ -52,9 +52,9 @@ export default class App extends React.Component {
                         </a>
                         <nav className="navigation">
                             <Link to="/">{this.state.first}'s profile</Link>
-                            <Link to="/timeline">recently added</Link>
-                            <Link to="/allfavs">your favs</Link>
-                            <Link to="/allads">ads</Link>
+                            <Link to="/timeline">recent projects</Link>
+                            <Link to="/allfavs">saved ads</Link>
+                            <Link style={{ color: 'orange' }} to="/allads">PostAds</Link>
                             <a href="/logout">logout</a>
                             <PostUploadButton
                                 onClick={() =>

@@ -48,12 +48,12 @@ export function PrivateChat(props) {
                                 src={message.url}
                                 alt={message.first}
                             />
-                            <p className="username">
+                            <p className="chat-username">
                                 {message.first} {message.last} said
                             </p>
                             <div>
-                                <p className="message">{message.message}</p>
-                                <p className="time">
+                                <p className="chat-message">{message.message}</p>
+                                <p className="chat-time">
                                     posted on {message.created_at}
                                 </p>
                             </div>

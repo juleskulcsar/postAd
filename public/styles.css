@@ -202,10 +202,10 @@ a:-webkit-any-link {
     display: flex;
 }
 
-#profile p,
+.profile-first-last, .profile-registered-as, .profile-bio,
 .other-profile-info-sidebar p {
     margin: 18px;
-    width: 500px;
+    width: 325px;
     color: white;
 }
 
@@ -251,7 +251,10 @@ a:-webkit-any-link {
 .other-profile-info-sidebar {
     width: 325px;
     height: 500px;
-    margin: 0 0 30px 15px;
+    margin-right: 50px;
+    margin-left: 50px;
+    margin-top: 40px;
+    /* margin: 0 0 30px 15px; */
 }
 
 .other-profile-image {
@@ -305,23 +308,32 @@ a:-webkit-any-link {
 .grid-container {
     display: flex;
     justify-content: center;
+    /* width: 70vh; */
 }
 .posts-list {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-gap: 1em;
+    align-items: center;
+    width: 60vw;
+    margin-top: 50px;
+    /* display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
+    width: 70vh; */
     /* grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     grid-gap: 1em;
     align-items: center;
-    width: 70vh;
-    height: 1000px;
-    margin-top: 50px; */
+    /* width: 70vh; */
+    /* height: 1000px;
+    margin-top: 50px; */ */
 }
 
 .timeline-grid-container {
         display: flex;
         justify-content: center;
+        margin-top: 100px;
     }
 
 .timeline-posts-list {
@@ -340,6 +352,7 @@ a:-webkit-any-link {
 .fav-grid-container {
     display: flex;
     justify-content: center;
+    margin-top: 100px;
 }
 
 .fav-ads-list {
@@ -627,6 +640,7 @@ a:-webkit-any-link {
 }
 .project-modal {
     display: flex;
+    margin-top: 100px;
 }
 .project-pic-sidebar {
     width: 500px;
@@ -653,12 +667,18 @@ a:-webkit-any-link {
 .project-modal-info-description {
     width: 300px;
 }
-
+.chatBox {
+    width: 325px;
+}
+.chat-message {
+    width: 325px;
+}
 .chat-container {
     max-height: 500px;
-    width: 300px;
+    width: 325px;
     margin-left: 20px;
     overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 .chat-container img {

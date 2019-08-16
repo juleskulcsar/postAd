@@ -2,14 +2,14 @@ export default function(state = {}, action) {
     if (action.type == "RECEIVE_POSTS") {
         state = {
             ...state,
-            posts: action.posts
+            posts: action.posts.reverse()
         };
     }
 
     if (action.type == "RECEIVE_TIMELINE") {
         state = {
             ...state,
-            posts: action.posts
+            posts: action.posts.reverse()
         };
     }
 

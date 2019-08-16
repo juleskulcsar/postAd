@@ -1,4 +1,14 @@
-DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS ads CASCADE;
+
+CREATE TABLE ads (
+    ad_id SERIAL primary key,
+    user_id INT NOT NULL REFERENCES users(id),
+    title text,
+    description VARCHAR(1500),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+DROP TABLE IF EXISTS users CASCADE;
 
 CREATE TABLE users (
     id SERIAL primary key,
@@ -14,7 +24,7 @@ CREATE TABLE users (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-DROP TABLE IF EXISTS posts;
+DROP TABLE IF EXISTS posts CASCADE;
 
 CREATE TABLE posts (
     post_id SERIAL primary key,
@@ -25,17 +35,8 @@ CREATE TABLE posts (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-DROP TABLE IF EXISTS ads;
 
-CREATE TABLE ads (
-    ad_id SERIAL primary key,
-    user_id INT NOT NULL REFERENCES users(id),
-    title text,
-    description VARCHAR(1500),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
-DROP TABLE IF EXISTS privatechat;
+DROP TABLE IF EXISTS privatechat CASCADE;
 
 CREATE TABLE privatechat (
     id SERIAL PRIMARY KEY,
@@ -45,7 +46,7 @@ CREATE TABLE privatechat (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-DROP TABLE IF EXISTS favorites;
+DROP TABLE IF EXISTS favorites CASCADE;
 
 CREATE TABLE favorites (
     id SERIAL PRIMARY KEY,
