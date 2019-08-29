@@ -54,6 +54,20 @@ export default function(state = {}, action) {
             ads: [action.ad, ...state.ads]
         };
     }
+
+    if (action.type == "REMOVE_FAV") {
+        console.log("state,favs in reducers:", state.ads);
+        state = {
+            ...state,
+            ads: state.ads.map(item => {
+                if (action.id == item.ad_id) {
+                    return { ...item, favorized: false };
+                } else {
+                    return item;
+                }
+            })
+        };
+    }
     //----change color in ads----------------------
     // if(action.type == "TOGGLE_COLOR") {
     //     return toggleMenu(state);

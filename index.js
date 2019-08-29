@@ -368,6 +368,21 @@ app.post("/ads/:fav_id.json", async (req, res) => {
     }
 });
 
+app.post("/adsr/:fav_id.json", async (req, res) => {
+    console.log("testing req.body in POST remove ads/: ", req.body);
+    try {
+        if (req.body.button == "remove") {
+            console.log("wtf is this fav_id: ", req.params.fav_id);
+            await db.removeFav(req.session.userId, req.params.fav_id);
+            res.json({
+                btnText: "save"
+            });
+        }
+    } catch (err) {
+        console.log("err in POST /adsr/:fav_id ", err);
+    }
+});
+
 //------------------------fav ads ----------------------
 
 //logout

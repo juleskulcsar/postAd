@@ -200,4 +200,12 @@ exports.getAllFavs = function getAllFavs(favuser_id) {
     );
 };
 
+exports.removeFav = function removeFav(user_id, fav_id) {
+    return db.query(
+        `DELETE FROM favorites
+        WHERE (user_id = $1 AND fav_id = $2)`,
+        [user_id, fav_id]
+    );
+};
+
 //-------------------favorites stuff-----------------------------
