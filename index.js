@@ -297,7 +297,7 @@ app.post("/ads", async (req, res) => {
 
 app.get("/allads.json", async (req, res) => {
     try {
-        const { rows } = await db.getAllAds();
+        const { rows } = await db.getAllAds(req.session.userId);
         // console.log("wtf is this rows in /allads.json: ", rows);
         res.json(rows);
     } catch (err) {

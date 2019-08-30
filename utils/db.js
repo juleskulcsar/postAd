@@ -99,16 +99,29 @@ exports.addAdInfo = function addAdInfo(user_id, title, description) {
     );
 };
 
-exports.getAllAds = function getAllAds() {
+// exports.getAllAds = function getAllAds(currentUserId) {
+//     return db.query(
+//         `SELECT favorized, ad_id, users.id, first, last, location, title, description
+//         FROM ads
+//         JOIN users
+//         ON (user_id = users.id)
+//         FULL OUTER JOIN favorites
+//         ON favorites.fav_id = ads.ad_id`
+//         );
+// };
+
+exports.getAllAds = function getAllAds(currentUserId) {
     return db.query(
         `SELECT favorized, ad_id, users.id, first, last, location, title, description
         FROM ads
         JOIN users
         ON (user_id = users.id)
-        FULL OUTER JOIN favorites
-        ON favorites.fav_id = ads.ad_id`
+        LEFT JOIN favorites
+        ON favorites.fav_id = ads.ad_id AND favorites.user_id = $1`,
+        [currentUserId]
     );
 };
+
 exports.getFavAdsStatus = function getFavAdsStatus(user_id, fav_id) {
     return db.query(
         `SELECT * FROM favorites
