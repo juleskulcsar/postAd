@@ -25,6 +25,7 @@ React.js | Redux | Node.js | Express.js | PostgreSQL | Socket.IO | AWS S3
 - Enabling designers to upload galleries
 - Creating better experience for developer's profiles
 - Direct message notifications
+- Improve masonry style layout grid
 
 ## Preview
 
