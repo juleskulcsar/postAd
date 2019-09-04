@@ -40,3 +40,8 @@ React.js | Redux | Node.js | Express.js | PostgreSQL | Socket.IO | AWS S3
 #### Adding To and Removing From Favorites
 
 <img src='./favorites.gif' />
+
+#### User Profile
+
+<img src='./portfolio.gif' />
+
