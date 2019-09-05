@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import axios from "./axios";
-import { saveFav } from "./actions";
+import { saveFav, removeFav } from "./actions";
 
 export default function AdsButton(props) {
     const dispatch = useDispatch();
@@ -34,6 +34,9 @@ export default function AdsButton(props) {
             if (button == "save") {
                 dispatch(saveFav(props.fav_id, button));
                 setButton("remove");
+            } else {
+                dispatch(removeFav(props.fav_id, button));
+                setButton("save");
             }
         } catch (err) {
             console.log("err in submit btn", err);

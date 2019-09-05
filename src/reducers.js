@@ -16,12 +16,16 @@ export default function(state = {}, action) {
     if (action.type == "RECEIVE_ALLFAVS") {
         state = {
             ...state,
-            favs: action.favs.reverse()
+            favs: action.favs
+                .filter(item => {
+                    return item.favorized == true;
+                })
+                .reverse()
         };
     }
 
     if (action.type == "NEW_POST") {
-        return {
+        state = {
             ...state,
             posts: [...state.posts, action.post]
         };
@@ -41,6 +45,20 @@ export default function(state = {}, action) {
         };
     }
 
+    if (action.type == "REMOVE_FAV") {
+        console.log("state,favs in reducers:", state.ads);
+        state = {
+            ...state,
+            ads: state.ads.map(item => {
+                if (action.id == item.ad_id) {
+                    return { ...item, favorized: false };
+                } else {
+                    return item;
+                }
+            })
+        };
+    }
+
     if (action.type == "RECEIVE_ADS") {
         state = {
             ...state,
@@ -49,7 +67,7 @@ export default function(state = {}, action) {
     }
 
     if (action.type == "NEW_AD") {
-        return {
+        state = {
             ...state,
             ads: [action.ad, ...state.ads]
         };

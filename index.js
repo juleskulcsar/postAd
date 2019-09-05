@@ -215,18 +215,6 @@ app.get("/allposts.json", async (req, res) => {
 });
 //----------------get all posts for each profile--------------
 
-//----------------get all favs---------------------------
-app.get("/allfavs.json", async (req, res) => {
-    try {
-        const { rows } = await db.getAllFavs(req.session.userId);
-        console.log("wtf is this rows in /allfavs.json: ", rows);
-        res.json(rows);
-    } catch (err) {
-        console.log("err in GET /allfavs.json: ", err);
-    }
-});
-//----------------get all favs---------------------------
-
 //----------get timeline all posts----------------
 app.get("/timeline.json", async (req, res) => {
     try {
@@ -323,6 +311,33 @@ app.get("/project/:post_id.json", async (req, res) => {
 });
 
 //------------------------fav ads ----------------------
+
+//----------------get all favs---------------------------
+app.get("/allfavs.json", async (req, res) => {
+    try {
+        const { rows } = await db.getAllFavs(req.session.userId);
+        console.log("wtf is this rows in /allfavs.json: ", rows);
+        res.json(rows);
+    } catch (err) {
+        console.log("err in GET /allfavs.json: ", err);
+    }
+});
+//----------------get all favs---------------------------
+
+app.post("/adsr/:fav_id.json", async (req, res) => {
+    console.log("testing req.body in POST remove ads/: ", req.body);
+    try {
+        if (req.body.button == "remove") {
+            console.log("wtf is this fav_id: ", req.params.fav_id);
+            await db.removeFav(req.session.userId, req.params.fav_id);
+            res.json({
+                btnText: "save"
+            });
+        }
+    } catch (err) {
+        console.log("err in POST /adsr/:fav_id ", err);
+    }
+});
 
 app.get("/ads/:fav_id.json", async (req, res) => {
     console.log("req.params.fav_id: ", req.params.fav_id);

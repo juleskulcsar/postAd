@@ -28,18 +28,22 @@ export default function AllFavs() {
         <div className="grid-container">
             <div className="posts-list">
                 {favs &&
-                    favs.map(post => (
-                        <div
-                            className={
-                                post.favorized ? "ads highlighted" : "ads"
-                            }
-                            key={post.id}
-                        >
-                            <p> {post.title} </p>
-                            <p> {post.description} </p>
-                            <AdsButton fav_id={post.fav_id} />
-                        </div>
-                    ))}
+                    favs
+                        .filter(item => {
+                            return item.favorized == true;
+                        })
+                        .map(post => (
+                            <div
+                                className={
+                                    post.favorized ? "ads highlighted" : "ads"
+                                }
+                                key={post.id}
+                            >
+                                <p> {post.title} </p>
+                                <p> {post.description} </p>
+                                <AdsButton fav_id={post.fav_id} />
+                            </div>
+                        ))}
             </div>
         </div>
     );

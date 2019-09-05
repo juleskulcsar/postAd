@@ -52,6 +52,18 @@ export async function saveFav(fav_id, button) {
     };
 }
 
+export async function removeFav(fav_id, button) {
+    console.log("actions removefav:", fav_id, button);
+    const { data } = await axios.post(`/adsr/${fav_id}.json`, {
+        button
+    });
+    console.log("DATA removeFav in ACTION:", data);
+    return {
+        type: "REMOVE_FAV",
+        id: fav_id
+    };
+}
+
 export async function receiveAllAds() {
     const { data } = await axios.get("/allads.json");
     return {
